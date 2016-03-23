@@ -1,7 +1,9 @@
+//Kevin Shin
+//CSE20212
 //collisionDetection.cpp
 //Using SDL, SDL_image, standard IO, and strings
-#include <SDL.h>
-#include <SDL_image.h>
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 #include <stdio.h>
 #include <string>
 
