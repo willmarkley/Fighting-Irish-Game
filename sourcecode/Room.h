@@ -4,21 +4,29 @@
 #include "SDL/SDL_image.h"
 #include <string>
 using namespace std;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+const int SCREEN_BPP = 32;
+
 
 class Room{
 
 	public:
-		Room();     // constructor
+		Room(string="");     // constructor
 		~Room();    // deconstructor
-		clear();    // clear screen
 
 	private:
-		Room* left;   // points to room at the left
-		Room* right;  // points to room at the right
-		Room* up;     // points to room above
-		const int ROOM_WIDTH = 640;   // room width
-		const int ROOM_HEIGHT = 480;  // room height
-		const int ROOM_BPP = 32;      // room bits per pixel
+		Room* left = NULL;   // points to room at the left
+		Room* right = NULL;  // points to room at the right
+		Room* up = NULL;     // points to room above
 		SDL_Surface *background = NULL;   // background image
-		Character player;   // main player
-}
+		SDL_Surface *window = NULL;       // window
+		//Character player;    // main player
+
+		bool init();           // initilizes SDL
+		SDL_Surface *load_image(string filename);  // loads image to surface
+		void apply_surface( int, int, SDL_Surface*, SDL_Surface*);  // applies image to surface
+		bool update_screen();   // updates screen
+};
+
+
