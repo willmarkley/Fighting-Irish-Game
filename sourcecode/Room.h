@@ -3,11 +3,11 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
+#include "Character.h"
 using namespace std;
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-const int SCREEN_BPP = 32;
 
+#ifndef ROOM_H
+#define ROOM_H
 
 class Room{
 
@@ -21,7 +21,10 @@ class Room{
 		Room* up = NULL;     // points to room above
 		SDL_Surface *background = NULL;   // background image
 		SDL_Surface *window = NULL;       // window
-		//Character player;    // main player
+		SDL_Surface *character = NULL;  // character surface
+		SDL_Event event;      // the event structure (to handle key presses)
+		Character player;    // main player
+		void play();         // plays the game
 
 		bool init();           // initilizes SDL
 		SDL_Surface *load_image(string filename);  // loads image to surface
@@ -29,4 +32,4 @@ class Room{
 		bool update_screen();   // updates screen
 };
 
-
+#endif
