@@ -21,7 +21,8 @@ class Room{
 		Room* up = NULL;     // points to room above
 		SDL_Surface *background = NULL;   // background image
 		SDL_Surface *window = NULL;       // window
-		SDL_Surface *character = NULL;  // character surface
+		SDL_Surface *character_left = NULL;  // character surface
+		SDL_Surface *character_right = NULL; //character surface
 		SDL_Surface *enemy1_surface = NULL;  // character surface
 		SDL_Surface *enemy2_surface = NULL;  // character surface
 		SDL_Event event;      // the event structure (to handle key presses)

@@ -7,13 +7,14 @@
 using namespace std;
 
 
-const int CHARACTER_WIDTH = 150;   // character width
-const int CHARACTER_HEIGHT = 137;  // character height   
+const int CHARACTER_WIDTH = 100;   // character width
+const int CHARACTER_HEIGHT = 86;  // character height   
 
 Character::Character(){        // constructor
     // initialize the offsets
     x = 0;
     y = 0;
+	image = 1;
 
     // initialize the velocity
     xVel = 0;
@@ -29,8 +30,8 @@ void Character::handle_input(SDL_Event* event){
         {
             case SDLK_UP: yVel -= CHARACTER_HEIGHT / 2; break;
             case SDLK_DOWN: yVel += CHARACTER_HEIGHT / 2; break;
-            case SDLK_LEFT: xVel -= CHARACTER_WIDTH / 2; break;
-            case SDLK_RIGHT: xVel += CHARACTER_WIDTH / 2; break;
+            case SDLK_LEFT: xVel -= CHARACTER_WIDTH / 2; image = 0; break;
+            case SDLK_RIGHT: xVel += CHARACTER_WIDTH / 2; image = 1; break;
         }
     }
     //If a key was released
@@ -76,4 +77,8 @@ int Character::getX(){           // returns X position
 
 int Character::getY(){           // returns X position
 	return y;
+}
+
+int Character::getImage(){
+	return image;
 }

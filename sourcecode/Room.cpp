@@ -21,14 +21,16 @@ Room::Room(string filename){    // constructor
 	background = load_image(filename);
 	apply_surface(0,0,background,window);
 	update_screen();
-	character=load_image("fi.bmp");
+	character_left=load_image("leprechaun_left.bmp");
+	character_right=load_image("leprechaun_right.bmp");
 	enemy1_surface=load_image("michigan.bmp");
 	enemy2_surface=load_image("Boston_College.bmp");
 	play();
 }
 
 Room::~Room(){    // deconstructor
-	SDL_FreeSurface(character);
+	SDL_FreeSurface(character_left);
+	SDL_FreeSurface(character_right);
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(window);
 	SDL_Quit();
@@ -53,7 +55,11 @@ void Room::play(){
 		apply_surface(200,0,enemy1_surface, window);
 		apply_surface(200,300,enemy2_surface, window);
 		player.move();  // move player according to input
-		apply_surface(player.getX(),player.getY(),character,window);
+		if (player.getImage() == 0){
+			apply_surface(player.getX(),player.getY(),character_left,window);
+		} else if (player.getImage() == 1){
+			apply_surface(player.getX(),player.getY(),character_right,window);
+		}
 		update_screen();
 		
 // NOT SURE IF WE NEED this block		//Cap the frame rate
