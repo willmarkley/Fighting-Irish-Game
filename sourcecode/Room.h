@@ -22,8 +22,12 @@ class Room{
 		SDL_Surface *background = NULL;   // background image
 		SDL_Surface *window = NULL;       // window
 		SDL_Surface *character = NULL;  // character surface
+		SDL_Surface *enemy1_surface = NULL;  // character surface
+		SDL_Surface *enemy2_surface = NULL;  // character surface
 		SDL_Event event;      // the event structure (to handle key presses)
 		Character player;    // main player
+		Character enemy1;
+		Character enemy2;
 		void play();         // plays the game
 
 		bool init();           // initilizes SDL

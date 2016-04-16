@@ -22,6 +22,8 @@ Room::Room(string filename){    // constructor
 	apply_surface(0,0,background,window);
 	update_screen();
 	character=load_image("fi.bmp");
+	enemy1_surface=load_image("michigan.bmp");
+	enemy2_surface=load_image("Boston_College.bmp");
 	play();
 }
 
@@ -48,6 +50,8 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
+		apply_surface(200,0,enemy1_surface, window);
+		apply_surface(200,300,enemy2_surface, window);
 		player.move();  // move player according to input
 		apply_surface(player.getX(),player.getY(),character,window);
 		update_screen();
