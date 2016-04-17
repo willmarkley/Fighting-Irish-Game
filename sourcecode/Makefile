@@ -1,7 +1,7 @@
 all:	main
 
 main: main.o Room.o Character.o
-	g++ -o main main.o Room.o Character.o -lSDL -lSDL_image
+	g++ -g -o main main.o Room.o Character.o -lSDL -lSDL_image
 
 main.o: main.cpp
 	g++ -c main.cpp

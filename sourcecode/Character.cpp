@@ -8,13 +8,15 @@ using namespace std;
 
 
 const int CHARACTER_WIDTH = 100;   // character width
-const int CHARACTER_HEIGHT = 86;  // character height   
+const int CHARACTER_HEIGHT = 86;  // character height
 
 Character::Character(){        // constructor
     // initialize the offsets
     x = 0;
     y = 0;
 	image = 1;
+	bullet=0;
+	lastPressed=4;
 
     // initialize the velocity
     xVel = 0;
@@ -28,10 +30,11 @@ void Character::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP: yVel -= 5; break;
-            case SDLK_DOWN: yVel += 5; break;
-            case SDLK_LEFT: xVel -= 5; image = 0; break;
-            case SDLK_RIGHT: xVel += 5; image = 1; break;
+            case SDLK_UP: yVel -= 5; lastPressed=1; break;
+            case SDLK_DOWN: yVel += 5; lastPressed=2;break;
+            case SDLK_LEFT: xVel -= 5; image = 0; lastPressed=3; break;
+            case SDLK_RIGHT: xVel += 5; image = 1; lastPressed=4; break;
+            case SDLK_SPACE: bullet=1; break;
         }
     }
     //If a key was released
@@ -81,4 +84,12 @@ int Character::getY(){           // returns X position
 
 int Character::getImage(){
 	return image;
+}
+
+int Character::getBullet(){
+	return bullet;
+}
+
+int Character::getPressed(){
+	return lastPressed;
 }

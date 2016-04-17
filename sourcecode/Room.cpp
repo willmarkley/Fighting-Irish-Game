@@ -12,6 +12,8 @@ const int ROOM_WIDTH = 960;     // room width
 const int ROOM_HEIGHT = 768;    // room height
 const int ROOM_BPP = 32;        // room bits per pixel
 const int FRAMES_PER_SECOND = 60;  // frame rate
+const int BULLET_WIDTH = 40;   // character width
+const int BULLET_HEIGHT = 28;  // character height
 
 Room::Room(string filename){    // constructor
 	init();
@@ -22,7 +24,7 @@ Room::Room(string filename){    // constructor
 	character_right=load_image("images/leprechaun_right.bmp");
 	enemy1_surface=load_image("images/michigan.bmp");
 	enemy2_surface=load_image("images/Boston_College.bmp");
-	
+	bullet_surface=load_image("images/football.bmp");
 }
 
 Room::~Room(){    // deconstructor
@@ -57,6 +59,7 @@ void Room::play(){
 		} else if (player.getImage() == 1){
 			apply_surface(player.getX(),player.getY(),character_right,window);
 		}
+		shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		update_screen();
 		
 // NOT SURE IF WE NEED this block		//Cap the frame rate
@@ -150,3 +153,22 @@ bool Room::update_screen(){
 	return true;
 }
 
+
+void Room::shoot(int x, int y, int bullet, int lastPressed){
+    if (bullet == 0){
+        xBullet = x;
+        yBullet = y;
+        pressed = lastPressed;
+    } else if (bullet == 1){
+        if(pressed == 1){
+            yBullet -= BULLET_HEIGHT;
+        } else if (pressed == 2){
+            yBullet += BULLET_HEIGHT;
+        } else if (pressed == 3){
+            xBullet -= BULLET_WIDTH;
+        } else if (pressed == 4){
+            yBullet += BULLET_WIDTH;
+        }
+        apply_surface(xBullet, yBullet, bullet_surface, window);
+    }
+}
