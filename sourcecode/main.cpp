@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main(){
-	Room r1("field.bmp");
+	Room r1("images/field.bmp");
 	
 	return 0;
 }

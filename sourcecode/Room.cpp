@@ -21,10 +21,10 @@ Room::Room(string filename){    // constructor
 	background = load_image(filename);
 	apply_surface(0,0,background,window);
 	update_screen();
-	character_left=load_image("leprechaun_left.bmp");
-	character_right=load_image("leprechaun_right.bmp");
-	enemy1_surface=load_image("michigan.bmp");
-	enemy2_surface=load_image("Boston_College.bmp");
+	character_left=load_image("images/leprechaun_left.bmp");
+	character_right=load_image("images/leprechaun_right.bmp");
+	enemy1_surface=load_image("images/michigan.bmp");
+	enemy2_surface=load_image("images/Boston_College.bmp");
 	play();
 }
 
