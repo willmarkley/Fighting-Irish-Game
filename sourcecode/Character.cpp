@@ -17,7 +17,8 @@ Character::Character(){        // constructor
 	image = 1;
 	bullet=0;
 	lastPressed=4;
-
+	charVel = 5;
+	health = 3;
     // initialize the velocity
     xVel = 0;
     yVel = 0;
@@ -30,10 +31,10 @@ void Character::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP: yVel -= 5; lastPressed=1; break;
-            case SDLK_DOWN: yVel += 5; lastPressed=2;break;
-            case SDLK_LEFT: xVel -= 5; image = 0; lastPressed=3; break;
-            case SDLK_RIGHT: xVel += 5; image = 1; lastPressed=4; break;
+            case SDLK_UP: yVel -= charVel; lastPressed=1; break;
+            case SDLK_DOWN: yVel += charVel; lastPressed=2;break;
+            case SDLK_LEFT: xVel -= charVel; image = 0; lastPressed=3; break;
+            case SDLK_RIGHT: xVel += charVel; image = 1; lastPressed=4; break;
             case SDLK_SPACE: bullet=1; break;
         }
     }
@@ -43,10 +44,10 @@ void Character::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP: yVel += 5; break;
-            case SDLK_DOWN: yVel -= 5; break;
-            case SDLK_LEFT: xVel += 5; break;
-            case SDLK_RIGHT: xVel -= 5; break;
+            case SDLK_UP: yVel += charVel; break;
+            case SDLK_DOWN: yVel -= charVel; break;
+            case SDLK_LEFT: xVel += charVel; break;
+            case SDLK_RIGHT: xVel -= charVel; break;
         }
     }
 }
@@ -93,3 +94,20 @@ int Character::getBullet(){
 int Character::getPressed(){
 	return lastPressed;
 }
+
+int Character::getHealth(){
+	return health;
+}
+
+int Character::getCharVel(){
+	return charVel;
+}
+
+void Character::setHealth(int num){
+	health = num;
+}
+
+void Character::setCharVel(int num){
+	charVel = num;
+}
+	

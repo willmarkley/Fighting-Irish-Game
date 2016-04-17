@@ -6,6 +6,8 @@
 #include "Room.h"
 #include "Character.h"
 #include "Timer.h"
+#include "Item.h"
+
 using namespace std;
 
 const int ROOM_WIDTH = 960;     // room width
@@ -25,11 +27,16 @@ Room::Room(string filename){    // constructor
 	enemy1_surface=load_image("images/michigan.bmp");
 	enemy2_surface=load_image("images/Boston_College.bmp");
 	bullet_surface=load_image("images/football.bmp");
+	item_surface=load_image("images/question-mark.bmp");
 }
 
 Room::~Room(){    // deconstructor
 	SDL_FreeSurface(character_left);
 	SDL_FreeSurface(character_right);
+	SDL_FreeSurface(enemy1_surface);
+	SDL_FreeSurface(enemy2_surface);
+	SDL_FreeSurface(item_surface);
+	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(window);
 	SDL_Quit();
@@ -53,6 +60,7 @@ void Room::play(){
 		apply_surface(0,0,background,window);
 		apply_surface(200,0,enemy1_surface, window);
 		apply_surface(200,300,enemy2_surface, window);
+		apply_surface(500,500, item_surface, window);
 		player.move();  // move player according to input
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),character_left,window);
