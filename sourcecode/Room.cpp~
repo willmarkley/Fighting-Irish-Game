@@ -22,7 +22,7 @@ Room::Room(string filename){    // constructor
 	character_right=load_image("images/leprechaun_right.bmp");
 	enemy1_surface=load_image("images/michigan.bmp");
 	enemy2_surface=load_image("images/Boston_College.bmp");
-	
+	play();
 }
 
 Room::~Room(){    // deconstructor

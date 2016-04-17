@@ -54,7 +54,7 @@ void Character::move()
     x += xVel;
 
     //If the character went too far to the left or right
-    if( ( x < 0 ) || ( x + CHARACTER_WIDTH > 960 ) )
+    if( ( x < 0 ) || ( x + CHARACTER_WIDTH > 640 ) )
     {
         //move back
         x -= xVel;
@@ -64,7 +64,7 @@ void Character::move()
     y += yVel;
 
     //If the character went too far up or down
-    if( ( y < 0 ) || ( y + CHARACTER_HEIGHT > 768 ) )
+    if( ( y < 0 ) || ( y + CHARACTER_HEIGHT > 480 ) )
     {
         //move back
         y -= yVel;
