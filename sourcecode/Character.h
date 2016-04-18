@@ -17,7 +17,10 @@ class Character {
 		int getX();           // returns X position
 		int getY();           // returns X position
 		int getImage();		  // return which image to use
+		void shoot(int, int, int, int);
 		int getBullet();
+		int getxBullet();
+		int getyBullet();
 		int getPressed();
 		SDL_Surface* getSurface();  // returns the surface
 	//	void shoot();         // character shoots projectiles
@@ -33,6 +36,7 @@ class Character {
 		int lastPressed;
 		int xVel, yVel;       // X and Y velocity of the character
 		int health;           // character health
+		int xBullet, yBullet, pressed;    //for the bullet shooting
 	//	int [] Item;          // status if an Item "i" was picked up
 };
 

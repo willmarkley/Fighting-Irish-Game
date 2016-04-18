@@ -14,8 +14,6 @@ const int ROOM_WIDTH = 960;     // room width
 const int ROOM_HEIGHT = 768;    // room height
 const int ROOM_BPP = 32;        // room bits per pixel
 const int FRAMES_PER_SECOND = 60;  // frame rate
-const int BULLET_WIDTH = 40;   // character width
-const int BULLET_HEIGHT = 28;  // character height
 
 Room::Room(string filename){    // constructor
 	init();
@@ -62,12 +60,13 @@ void Room::play(){
 		apply_surface(200,300,enemy2_surface, window);
 		apply_surface(500,500, item_surface, window);
 		player.move();  // move player according to input
+		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
+		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),character_left,window);
 		} else if (player.getImage() == 1){
 			apply_surface(player.getX(),player.getY(),character_right,window);
 		}
-		shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		update_screen();
 		
 // NOT SURE IF WE NEED this block		//Cap the frame rate
@@ -161,8 +160,7 @@ bool Room::update_screen(){
 	return true;
 }
 
-
-void Room::shoot(int x, int y, int bullet, int lastPressed){
+/*void Room::shoot(int x, int y, int bullet, int lastPressed){
     if (bullet == 0){
         xBullet = x;
         yBullet = y;
@@ -175,8 +173,11 @@ void Room::shoot(int x, int y, int bullet, int lastPressed){
         } else if (pressed == 3){
             xBullet -= BULLET_WIDTH;
         } else if (pressed == 4){
-            yBullet += BULLET_WIDTH;
+            xBullet += BULLET_WIDTH;
         }
-        apply_surface(xBullet, yBullet, bullet_surface, window);
+        
     }
-}
+	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
+		bullet = 0;
+	}
+}*/

@@ -29,9 +29,9 @@ class Room{
 		Character player;    // main player
 		Character enemy1;
 		Character enemy2;
-		void shoot(int,int,int,int);
-		int xBullet, yBullet;
-		int pressed;
+		//void shoot(int,int,int,int);
+		//int xBullet, yBullet;
+		//int pressed;
 
 		bool init();           // initilizes SDL
 		SDL_Surface *load_image(string filename);  // loads image to surface

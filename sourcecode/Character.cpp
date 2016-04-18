@@ -9,6 +9,10 @@ using namespace std;
 
 const int CHARACTER_WIDTH = 100;   // character width
 const int CHARACTER_HEIGHT = 86;  // character height
+const int BULLET_WIDTH = 40;   // character width
+const int BULLET_HEIGHT = 28;  // character height
+const int ROOM_WIDTH = 960;     // room width
+const int ROOM_HEIGHT = 768;    // room height
 
 Character::Character(){        // constructor
     // initialize the offsets
@@ -58,7 +62,7 @@ void Character::move()
     x += xVel;
 
     //If the character went too far to the left or right
-    if( ( x < 0 ) || ( x + CHARACTER_WIDTH > 960 ) )
+    if( ( x < 0 ) || ( x + CHARACTER_WIDTH > ROOM_WIDTH ) )
     {
         //move back
         x -= xVel;
@@ -68,11 +72,33 @@ void Character::move()
     y += yVel;
 
     //If the character went too far up or down
-    if( ( y < 0 ) || ( y + CHARACTER_HEIGHT > 768 ) )
+    if( ( y < 0 ) || ( y + CHARACTER_HEIGHT > ROOM_HEIGHT ) )
     {
         //move back
         y -= yVel;
     }
+}
+
+void Character::shoot(int x, int y, int bullet, int lastPressed){
+    if (bullet == 0){
+        xBullet = x;
+        yBullet = y;
+        pressed = lastPressed;
+    } else if (bullet == 1){
+        if(pressed == 1){
+            yBullet -= BULLET_HEIGHT;
+        } else if (pressed == 2){
+            yBullet += BULLET_HEIGHT;
+        } else if (pressed == 3){
+            xBullet -= BULLET_WIDTH;
+        } else if (pressed == 4){
+            xBullet += BULLET_WIDTH;
+        }
+        
+    }
+	if (xBullet >= ROOM_WIDTH || xBullet <= 0 || yBullet >= ROOM_HEIGHT || yBullet <= 0){
+		bullet = 0;
+	}
 }
 
 int Character::getX(){           // returns X position
@@ -81,6 +107,14 @@ int Character::getX(){           // returns X position
 
 int Character::getY(){           // returns X position
 	return y;
+}
+
+int Character::getxBullet(){           // returns X position
+	return xBullet;
+}
+
+int Character::getyBullet(){           // returns X position
+	return yBullet;
 }
 
 int Character::getImage(){
