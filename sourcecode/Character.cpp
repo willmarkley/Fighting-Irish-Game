@@ -10,7 +10,7 @@ using namespace std;
 
 
 const int CHARACTER_WIDTH = 100;   // character width
-const int CHARACTER_HEIGHT = 86;  // character height
+const int CHARACTER_HEIGHT = 89;  // character height
 const int BULLET_WIDTH = 40;   // character width
 const int BULLET_HEIGHT = 28;  // character height
 const int ROOM_WIDTH = 960;     // room width
@@ -20,8 +20,8 @@ Character::Character(int a, int b){        // constructor
     // initialize the offsets
     img_rectangle.x = a;
     img_rectangle.y = b;
-    img_rectangle.h = CHARACTER_WIDTH;
-    img_rectangle.w = CHARACTER_HEIGHT;
+    img_rectangle.h = CHARACTER_HEIGHT;
+    img_rectangle.w = CHARACTER_WIDTH;
     image = 1;
     bullet=0;
     lastPressed=4;

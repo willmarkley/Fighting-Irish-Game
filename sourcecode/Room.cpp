@@ -60,7 +60,7 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
-		apply_surface(enemy1.getX(),enemy2.getY(),enemy1_surface, window);
+		apply_surface(enemy1.getX(),enemy1.getY(),enemy1_surface, window);
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2_surface, window);
 		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
 		apply_surface(450,344, item_surface, window);
