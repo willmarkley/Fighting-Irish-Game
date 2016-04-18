@@ -16,8 +16,8 @@ const int ROOM_HEIGHT = 768;    // room height
 
 Character::Character(){        // constructor
     // initialize the offsets
-    x = 0;
-    y = 0;
+    img_rectangle.x = ROOM_WIDTH/2;
+	img_rectangle.y = ROOM_WIDTH/2;
 	image = 1;
 	bullet=0;
 	lastPressed=4;
@@ -55,8 +55,8 @@ void Character::handle_input(SDL_Event* event){
 			case SDLK_SPACE:
 					if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 						bullet = 0;
-						xBullet = x;
-						yBullet = y;
+						xBullet = img_rectangle.x;
+						yBullet = img_rectangle.y;
 					}
 				break;
         }
@@ -66,28 +66,28 @@ void Character::handle_input(SDL_Event* event){
 void Character::move()
 {
     //Move the character left or right
-    x += xVel;
+    img_rectangle.x += xVel;
 
     //If the character went too far to the left or right
-    if( ( x < 0 ) || ( x + CHARACTER_WIDTH > ROOM_WIDTH ) )
+    if( ( img_rectangle.x < 0 ) || ( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ) )
     {
         //move back
-        x -= xVel;
+        img_rectangle.x -= xVel;
     }
 
     //Move the character up or down
-    y += yVel;
+    img_rectangle.y += yVel;
 
     //If the character went too far up or down
-    if( ( y < 0 ) || ( y + CHARACTER_HEIGHT > ROOM_HEIGHT ) )
+    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ) )
     {
         //move back
-        y -= yVel;
+        img_rectangle.y -= yVel;
     }
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
-		xBullet = x;
-		yBullet = y;
+		xBullet = img_rectangle.x;
+		yBullet = img_rectangle.y;
 	}
 }
 
@@ -110,11 +110,11 @@ void Character::shoot(int x, int y, int bullet, int lastPressed){
 }
 
 int Character::getX(){           // returns X position
-	return x;
+	return img_rectangle.x;
 }
 
 int Character::getY(){           // returns X position
-	return y;
+	return img_rectangle.y;
 }
 
 int Character::getxBullet(){           // returns X position

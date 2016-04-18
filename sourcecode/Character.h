@@ -28,7 +28,9 @@ class Character {
 		int getCharVel();	//returns character velocity
 		void setHealth(int);	//sets health
 		void setCharVel(int);	//sets character velocity
+
 	private:
+		SDL_Rect img_rectangle;  // SDL rectangle that represents an image
 		int x, y;             // X and Y offsets of the character
 		int image;            // calls left or right image
 		int charVel;	      // stores character velocity
