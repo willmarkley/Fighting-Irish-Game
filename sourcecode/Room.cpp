@@ -15,7 +15,8 @@ const int ROOM_HEIGHT = 768;    // room height
 const int ROOM_BPP = 32;        // room bits per pixel
 const int FRAMES_PER_SECOND = 60;  // frame rate
 
-Room::Room(string filename){    // constructor
+
+Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enemy3(800,600){    // constructor
 	init();
 	background = load_image(filename);
 	apply_surface(0,0,background,window);
@@ -23,12 +24,12 @@ Room::Room(string filename){    // constructor
 	character_left=load_image("images/leprechaun_left.bmp");
 	character_right=load_image("images/leprechaun_right.bmp");
 	enemy1_surface=load_image("images/michigan.bmp");
-	enemy2_surface=load_image("images/Boston_College.bmp");
-	enemy2_surface=load_image("images/Boston_College.bmp");
+	enemy2_surface=load_image("images/e2.bmp");
 	enemy3_surface=load_image("images/boi.bmp");
 	bullet_surface=load_image("images/football.bmp");
 	item_surface=load_image("images/question-mark.bmp");
 }
+
 
 Room::~Room(){    // deconstructor
 	SDL_FreeSurface(character_left);
@@ -59,7 +60,7 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
-		apply_surface(enemy1.getX(),enemy1.getY(),enemy1_surface, window);
+		apply_surface(enemy1.getX(),enemy2.getY(),enemy1_surface, window);
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2_surface, window);
 		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
 		apply_surface(450,344, item_surface, window);

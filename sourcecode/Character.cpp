@@ -4,6 +4,8 @@
 #include "SDL/SDL_image.h"
 #include <string>
 #include "Character.h"
+#include <iostream>
+
 using namespace std;
 
 
@@ -17,12 +19,14 @@ const int ROOM_HEIGHT = 768;    // room height
 Character::Character(int a, int b){        // constructor
     // initialize the offsets
     img_rectangle.x = a;
-	img_rectangle.y = b;
-	image = 1;
-	bullet=0;
-	lastPressed=4;
-	charVel = 5;
-	health = 3;
+    img_rectangle.y = b;
+    img_rectangle.h = CHARACTER_WIDTH;
+    img_rectangle.w = CHARACTER_HEIGHT;
+    image = 1;
+    bullet=0;
+    lastPressed=4;
+    charVel = 5;
+    health = 3;
     // initialize the velocity
     xVel = 0;
     yVel = 0;
@@ -72,13 +76,14 @@ void Character::move(Character e1, Character e2, Character e3){
     {
         //move back
         img_rectangle.x -= xVel;
+
     }
 
     //Move the character up or down
     img_rectangle.y += yVel;
 
     //If the character went too far up or down
-    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ) || collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ) ||  collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.y -= yVel;
@@ -118,7 +123,7 @@ bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
     leftr1 = r1.x;
     rightr1 = r1.x + r1.w;
     topr1 = r1.y;
-    bottomr1 = r1.y + r1.h;
+    bottomr1 = r1.y + r1.h;    
 
     //Calculate the sides of rect r2
     leftr2 = r2.x;
@@ -155,7 +160,7 @@ int Character::getX(){           // returns X position
 	return img_rectangle.x;
 }
 
-int Character::getY(){           // returns X position
+int Character::getY(){           // returns Y position
 	return img_rectangle.y;
 }
 
@@ -163,7 +168,7 @@ int Character::getxBullet(){           // returns X position
 	return xBullet;
 }
 
-int Character::getyBullet(){           // returns X position
+int Character::getyBullet(){           // returns Y position
 	return yBullet;
 }
 

@@ -11,7 +11,7 @@ using namespace std;
 class Character {
 
 	public:
-		Character(int=100,int=100);          // constructor
+		Character(int=500,int=500);          // constructor
 		void handle_input(SDL_Event* event);  // handles key presses and adjusts the character's velocity
  		void move();          // moves the character
 		int getX();           // returns X position
