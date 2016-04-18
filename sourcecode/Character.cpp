@@ -26,7 +26,7 @@ Character::Character(int a, int b){        // constructor
     bullet=0;
     lastPressed=4;
     charVel = 5;
-    health = 3;
+    health = 5;
     // initialize the velocity
     xVel = 0;
     yVel = 0;
@@ -111,8 +111,8 @@ void Character::move(Character e1, Character e2, Character e3){
 
 void Character::shoot(int x, int y, int bullet, int lastPressed){
     if (bullet == 0){
-        xBullet = x;
-        yBullet = y;
+        xBullet = img_rectangle.x;
+        yBullet = img_rectangle.y;
         pressed = lastPressed;
     } else if (bullet == 1){
         if(pressed == 1){

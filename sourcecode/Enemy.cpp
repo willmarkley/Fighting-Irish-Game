@@ -14,9 +14,15 @@ const int CHARACTER_WIDTH = 100;   // character width
 const int CHARACTER_HEIGHT = 89;  // character height
 const int ROOM_WIDTH = 960;     // room width
 const int ROOM_HEIGHT = 768;    // room height
+const int BULLET_WIDTH = 40;   // character width
+const int BULLET_HEIGHT = 28;  // character height
 
 Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
     // initialize the offsets
+	incomingBullet.x = getxBullet();
+	incomingBullet.y = getyBullet();
+	incomingBullet.h = BULLET_HEIGHT;
+	incomingBullet.w = BULLET_WIDTH;
     image = 1;
     bullet=0;
     lastPressed=4;
@@ -29,7 +35,7 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
 	ranCounter = 100;
 }
 
-void Enemy::enemyMove(Character e1, Character e2, Character e3){
+void Enemy::enemyMove(Character player, Character e2, Character e3){
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;
@@ -55,13 +61,19 @@ void Enemy::enemyMove(Character e1, Character e2, Character e3){
 	if( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ){
 		img_rectangle.x = ROOM_WIDTH - CHARACTER_WIDTH;
 	}
-	if (collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.x -= 10*xVel;
-		health -= 1;
+		player.setHealth(player.getHealth() - 1);
     }
 
+	if(collision_detect(e2.img_rectangle, incomingBullet) || collision_detect(e3.img_rectangle, incomingBullet) || collision_detect(player.img_rectangle, incomingBullet)){
+		health -= 1;
+		bullet = 0;
+		xBullet = img_rectangle.x;
+		yBullet = img_rectangle.y;
+	}
     //Move the character up or down
     img_rectangle.y += yVel;
 
@@ -72,11 +84,11 @@ void Enemy::enemyMove(Character e1, Character e2, Character e3){
 	if( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ){
 		img_rectangle.y = ROOM_HEIGHT - CHARACTER_HEIGHT;
 	}
-	if (collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.y -= 10*yVel;
-		health -= 1;
+		player.setHealth(player.getHealth() - 1);
     }
 	if (random == 1){
 		yVel += charVel;

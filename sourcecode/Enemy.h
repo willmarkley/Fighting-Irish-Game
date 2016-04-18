@@ -9,8 +9,9 @@ class Enemy: public Character {
 	
 	public:
 		Enemy(int=100, int=100);	//Constructor
-		void enemyMove(Character e1, Character e2, Character e3);
+		void enemyMove(Character player, Character e2, Character e3);
 		void enemyShoot();
+		SDL_Rect incomingBullet;
 
 	protected:
 		int enemyHealth;
