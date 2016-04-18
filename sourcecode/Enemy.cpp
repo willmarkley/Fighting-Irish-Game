@@ -50,8 +50,8 @@ void Enemy::enemyMove(Character e1, Character e2, Character e3){
 
     //If the character went too far to the left or right
     if(img_rectangle.x < 0){
-		img_rectangle = 0;
-
+		img_rectangle.x = 0;
+	}
 	if( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ){
 		img_rectangle.x = ROOM_WIDTH - CHARACTER_WIDTH;
 	}

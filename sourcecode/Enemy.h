@@ -12,6 +12,9 @@ class Enemy: public Character {
 		void enemyMove(Character e1, Character e2, Character e3);
 		void enemyShoot();
 
+	protected:
+		int enemyHealth;
+
 	private:
 		int random, ranCounter;
 };
