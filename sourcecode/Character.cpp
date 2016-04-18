@@ -67,7 +67,7 @@ void Character::handle_input(SDL_Event* event){
     }
 }
 
-void Character::move(Character e1, Character e2, Character e3){
+virtual void Character::move(Character e1, Character e2, Character e3){
     //Move the character left or right
     img_rectangle.x += xVel;
 
