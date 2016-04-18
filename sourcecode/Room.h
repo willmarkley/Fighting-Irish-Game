@@ -4,6 +4,7 @@
 #include "SDL/SDL_image.h"
 #include <string>
 #include "Character.h"
+#include "Enemy.h"
 using namespace std;
 
 #ifndef ROOM_H
@@ -28,7 +29,7 @@ class Room{
 		SDL_Surface *item_surface = NULL;  // item surface
 		SDL_Event event;      // the event structure (to handle key presses)
 		Character player;    // main player
-		Character enemy1;
+		Enemy enemy1;
 		Character enemy2;
 		Character enemy3;
 		//void shoot(int,int,int,int);

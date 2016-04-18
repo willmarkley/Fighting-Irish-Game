@@ -3,6 +3,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
+
 using namespace std;
 
 #ifndef CHARACTER_H
@@ -29,9 +30,10 @@ class Character {
 		void setCharVel(int);	//sets character velocity
 		void move(Character e1, Character e2, Character e3);
 		bool collision_detect(SDL_Rect r1, SDL_Rect r2);
-
-	private:
 		SDL_Rect img_rectangle;  // SDL rectangle that represents an image
+
+	protected:
+		//SDL_Rect img_rectangle;  // SDL rectangle that represents an image
 		int image;            // calls left or right image
 		int charVel;	      // stores character velocity
 		int bullet;

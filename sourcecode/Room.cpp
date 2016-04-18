@@ -7,6 +7,7 @@
 #include "Character.h"
 #include "Timer.h"
 #include "Item.h"
+#include "Enemy.h"
 
 using namespace std;
 
@@ -65,6 +66,7 @@ void Room::play(){
 		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
 		apply_surface(450,344, item_surface, window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
+		enemy1.enemyMove(player, enemy2, enemy3);
 		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 		if (player.getImage() == 0){
@@ -165,25 +167,4 @@ bool Room::update_screen(){
 	return true;
 }
 
-/*void Room::shoot(int x, int y, int bullet, int lastPressed){
-    if (bullet == 0){
-        xBullet = x;
-        yBullet = y;
-        pressed = lastPressed;
-    } else if (bullet == 1){
-        if(pressed == 1){
-            yBullet -= BULLET_HEIGHT;
-        } else if (pressed == 2){
-            yBullet += BULLET_HEIGHT;
-        } else if (pressed == 3){
-            xBullet -= BULLET_WIDTH;
-        } else if (pressed == 4){
-            xBullet += BULLET_WIDTH;
-        }
-        
-    }
-	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
-		bullet = 0;
-	}
-}*/
 

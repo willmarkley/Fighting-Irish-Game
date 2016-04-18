@@ -1,5 +1,5 @@
 // Enemy Derived Class Header File
-
+#include "Character.h"
 using namespace std;
 
 #ifndef ENEMY_H
@@ -8,23 +8,12 @@ using namespace std;
 class Enemy: public Character {
 	
 	public:
-		Enemy();	//Constructor
-		void move();
-		int getX();
-		int getY();
-		int getImage();
-		void shoot();		
-		//int getBullet();
-		//int getxBullet();
-		//int getyBullet();
-		//int getHealth();
+		Enemy(int=100, int=100);	//Constructor
+		void enemyMove(Character e1, Character e2, Character e3);
+		void enemyShoot();
 
 	private:
-		int health;
-		int xBullet, yBullet;
-		int x, y;
-		int bullet;
-		int xVel, yVel;
+		int random, ranCounter;
 };
 
 #endif
