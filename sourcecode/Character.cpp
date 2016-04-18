@@ -52,6 +52,12 @@ void Character::handle_input(SDL_Event* event){
             case SDLK_DOWN: yVel -= charVel; break;
             case SDLK_LEFT: xVel += charVel; break;
             case SDLK_RIGHT: xVel -= charVel; break;
+			case SDLK_SPACE:
+				if (xBullet >= ROOM_WIDTH || xBullet <= 0 || yBullet >= ROOM_HEIGHT || yBullet <= 0){
+					bullet = 0;
+					xBullet = x;
+					yBullet = y;
+				}
         }
     }
 }
@@ -94,11 +100,7 @@ void Character::shoot(int x, int y, int bullet, int lastPressed){
         } else if (pressed == 4){
             xBullet += BULLET_WIDTH;
         }
-        
     }
-	if (xBullet >= ROOM_WIDTH || xBullet <= 0 || yBullet >= ROOM_HEIGHT || yBullet <= 0){
-		bullet = 0;
-	}
 }
 
 int Character::getX(){           // returns X position
