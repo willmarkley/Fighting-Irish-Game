@@ -39,7 +39,6 @@ class Character {
 		int xVel, yVel;       // X and Y velocity of the character
 		int health;           // character health
 		int xBullet, yBullet, pressed;    //for the bullet shooting
-	//	int [] Item;          // status if an Item "i" was picked up
 };
 
 #endif
