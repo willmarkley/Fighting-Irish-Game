@@ -30,8 +30,8 @@ class Room{
 		SDL_Event event;      // the event structure (to handle key presses)
 		Character player;    // main player
 		Enemy enemy1;
-		Character enemy2;
-		Character enemy3;
+		Enemy enemy2;
+		Enemy enemy3;
 		//void shoot(int,int,int,int);
 		//int xBullet, yBullet;
 		//int pressed;

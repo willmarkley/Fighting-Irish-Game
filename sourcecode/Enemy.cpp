@@ -3,7 +3,6 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
-//#include "Character.h"
 #include "Enemy.h"
 #include <iostream>
 #include <stdlib.h>

@@ -67,6 +67,8 @@ void Room::play(){
 		apply_surface(450,344, item_surface, window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
 		enemy1.enemyMove(player, enemy2, enemy3);
+		enemy2.enemyMove(player, enemy1, enemy3);
+		enemy3.enemyMove(player, enemy2, enemy1);
 		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 		if (player.getImage() == 0){
