@@ -14,10 +14,10 @@ const int BULLET_HEIGHT = 28;  // character height
 const int ROOM_WIDTH = 960;     // room width
 const int ROOM_HEIGHT = 768;    // room height
 
-Character::Character(){        // constructor
+Character::Character(int a, int b){        // constructor
     // initialize the offsets
-    img_rectangle.x = ROOM_WIDTH/2;
-	img_rectangle.y = ROOM_WIDTH/2;
+    img_rectangle.x = a;
+	img_rectangle.y = b;
 	image = 1;
 	bullet=0;
 	lastPressed=4;
@@ -63,13 +63,12 @@ void Character::handle_input(SDL_Event* event){
     }
 }
 
-void Character::move()
-{
+void Character::move(Character e1, Character e2, Character e3){
     //Move the character left or right
     img_rectangle.x += xVel;
 
     //If the character went too far to the left or right
-    if( ( img_rectangle.x < 0 ) || ( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ) )
+    if( ( img_rectangle.x < 0 ) || ( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ) || collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.x -= xVel;
@@ -79,7 +78,7 @@ void Character::move()
     img_rectangle.y += yVel;
 
     //If the character went too far up or down
-    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ) )
+    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ) || collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.y -= yVel;
@@ -107,6 +106,49 @@ void Character::shoot(int x, int y, int bullet, int lastPressed){
             xBullet += BULLET_WIDTH;
         }
     }
+}
+
+bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
+    int leftr1, leftr2;
+    int rightr1, rightr2;
+    int topr1, topr2;
+    int bottomr1, bottomr2;
+
+    //Calculate the sides of rect r1
+    leftr1 = r1.x;
+    rightr1 = r1.x + r1.w;
+    topr1 = r1.y;
+    bottomr1 = r1.y + r1.h;
+
+    //Calculate the sides of rect r2
+    leftr2 = r2.x;
+    rightr2 = r2.x + r2.w;
+    topr2 = r2.y;
+    bottomr2 = r2.y + r2.h;
+
+    // if any r1 sides exist outside r2
+    if( bottomr1 <= topr2 )
+    {
+        return false;
+    }
+
+    if( topr1 >= bottomr2 )
+    {
+        return false;
+    }
+
+    if( rightr1 <= leftr2 )
+    {
+        return false;
+    }
+
+    if( leftr1 >= rightr2 )
+    {
+        return false;
+    }
+
+    // if none of the sides from r1 are outside r2
+    return true;  // collision detected
 }
 
 int Character::getX(){           // returns X position
@@ -152,4 +194,4 @@ void Character::setHealth(int num){
 void Character::setCharVel(int num){
 	charVel = num;
 }
-	
+

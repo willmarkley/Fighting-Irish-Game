@@ -24,6 +24,8 @@ Room::Room(string filename){    // constructor
 	character_right=load_image("images/leprechaun_right.bmp");
 	enemy1_surface=load_image("images/michigan.bmp");
 	enemy2_surface=load_image("images/Boston_College.bmp");
+	enemy2_surface=load_image("images/Boston_College.bmp");
+	enemy3_surface=load_image("images/boi.bmp");
 	bullet_surface=load_image("images/football.bmp");
 	item_surface=load_image("images/question-mark.bmp");
 }
@@ -33,6 +35,7 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(character_right);
 	SDL_FreeSurface(enemy1_surface);
 	SDL_FreeSurface(enemy2_surface);
+	SDL_FreeSurface(enemy3_surface);
 	SDL_FreeSurface(item_surface);
 	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(background);
@@ -56,10 +59,11 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
-		apply_surface(200,0,enemy1_surface, window);
-		apply_surface(200,300,enemy2_surface, window);
+		apply_surface(enemy1.getX(),enemy1.getY(),enemy1_surface, window);
+		apply_surface(enemy2.getX(),enemy2.getY(),enemy2_surface, window);
+		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
 		apply_surface(450,344, item_surface, window);
-		player.move();  // move player according to input
+		player.move(enemy1,enemy2,enemy3);  // move player according to input
 		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 		if (player.getImage() == 0){
@@ -181,3 +185,4 @@ bool Room::update_screen(){
 		bullet = 0;
 	}
 }*/
+
