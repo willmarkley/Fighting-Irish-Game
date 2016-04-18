@@ -29,6 +29,11 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	enemy3_surface=load_image("images/boi.bmp");
 	bullet_surface=load_image("images/football.bmp");
 	item_surface=load_image("images/question-mark.bmp");
+	health1_surface=load_image("images/health1.bmp");
+	health2_surface=load_image("images/health2.bmp");
+	health3_surface=load_image("images/health3.bmp");
+	health4_surface=load_image("images/health4.bmp");
+	health5_surface=load_image("images/health5.bmp");
 }
 
 
@@ -40,6 +45,11 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(enemy3_surface);
 	SDL_FreeSurface(item_surface);
 	SDL_FreeSurface(bullet_surface);
+	SDL_FreeSurface(health1_surface);
+	SDL_FreeSurface(health2_surface);
+	SDL_FreeSurface(health3_surface);
+	SDL_FreeSurface(health4_surface);
+	SDL_FreeSurface(health5_surface);
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(window);
 	SDL_Quit();
@@ -65,6 +75,16 @@ void Room::play(){
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2_surface, window);
 		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
 		apply_surface(450,344, item_surface, window);
+		if(player.getHealth() == 5)
+			apply_surface(0, 0, health1_surface, window);
+		else if(player.getHealth() == 4)
+			apply_surface(0, 0, health2_surface, window);
+		else if(player.getHealth() == 3)
+			apply_surface(0, 0, health3_surface, window);
+		else if(player.getHealth() == 2)
+			apply_surface(0, 0, health4_surface, window);
+		else if(player.getHealth() == 1)
+			apply_surface(0, 0, health5_surface, window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
 		enemy1.enemyMove(player, enemy2, enemy3);
 		enemy2.enemyMove(player, enemy1, enemy3);

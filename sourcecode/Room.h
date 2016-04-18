@@ -27,6 +27,11 @@ class Room{
 		SDL_Surface *enemy3_surface = NULL;  // character surface
 		SDL_Surface *bullet_surface = NULL;  // character surface
 		SDL_Surface *item_surface = NULL;  // item surface
+		SDL_Surface *health1_surface = NULL;
+		SDL_Surface *health2_surface = NULL;
+		SDL_Surface *health3_surface = NULL;
+		SDL_Surface *health4_surface = NULL;
+		SDL_Surface *health5_surface = NULL;
 		SDL_Event event;      // the event structure (to handle key presses)
 		Character player;    // main player
 		Enemy enemy1;
