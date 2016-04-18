@@ -13,7 +13,6 @@ class Item {
 		void Check(Character c);	//Checks what item is picked up
 		void randItem();		//Creates random Item
 	private:
-		int x, y;	//Position of item
 		int Items;	//Stores item selection
 };
 

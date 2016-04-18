@@ -10,8 +10,6 @@
 using namespace std;
 
 Item::Item() {		//Constructor
-	x = 320;
-	y = 240;
 	Items = 0;
 }
 
