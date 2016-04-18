@@ -72,28 +72,34 @@ void Character::move(Character e1, Character e2, Character e3){
     img_rectangle.x += xVel;
 
     //If the character went too far to the left or right
-    if( ( img_rectangle.x < 0 ) || ( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH )){
-	img_rectangle.x -= xVel;
+    if( ( img_rectangle.x < 0 )){
+		img_rectangle.x = 0;
+	}
+	if(( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH )){
+		img_rectangle.x = ROOM_WIDTH - CHARACTER_WIDTH;
     }
     if(collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.x -= 10*xVel;
-	health -= 1;
+		health -= 1;
     }
 
     //Move the character up or down
     img_rectangle.y += yVel;
 
     //If the character went too far up or down
-    if( ( img_rectangle.y < 0 ) || ( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT )){
-	img_rectangle.y -= yVel;
+    if( ( img_rectangle.y < 0 )){
+		img_rectangle.y = 0;
+	}
+	if( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ){
+		img_rectangle.y = ROOM_HEIGHT - CHARACTER_HEIGHT;
     }
     if(collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         //move back
         img_rectangle.y -= 10*yVel;
-	health -= 1;
+		health -= 1;
     }
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
