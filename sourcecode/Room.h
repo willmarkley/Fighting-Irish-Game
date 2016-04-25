@@ -5,6 +5,7 @@
 #include <string>
 #include "Character.h"
 #include "Enemy.h"
+#include "Item.h"
 using namespace std;
 
 #ifndef ROOM_H
@@ -23,7 +24,6 @@ class Room{
 		SDL_Surface *character_left = NULL;  // character surface
 		SDL_Surface *character_right = NULL; //character surface
 		SDL_Surface *bullet_surface = NULL;  // character surface
-		SDL_Surface *item_surface = NULL;  // item surface
 		SDL_Surface *health1_surface = NULL;
 		SDL_Surface *health2_surface = NULL;
 		SDL_Surface *health3_surface = NULL;
@@ -34,6 +34,7 @@ class Room{
 		Enemy enemy1;
 		Enemy enemy2;
 		Enemy enemy3;
+		Item item1;
 		//void shoot(int,int,int,int);
 		//int xBullet, yBullet;
 		//int pressed;

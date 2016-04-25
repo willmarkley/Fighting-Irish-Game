@@ -4,16 +4,20 @@
 
 #ifndef ITEM_H
 #define ITEM_H
-
 using namespace std;
 
 class Item {
+
 	public:
-		Item();				//Constructor
-		void Check(Character c);	//Checks what item is picked up
-		void randItem();		//Creates random Item
+		Item();				             // constructor
+		void Check(Character c);         // checks what item is picked up
+		void randItem();                 // creates random Item
+		SDL_Surface* getSurface();       // returns a pointer to the SDL surface
+		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
+
 	private:
-		int Items;	//Stores item selection
+		SDL_Surface* surface;
+		int Items;	// stores item selection
 };
 
 #endif

@@ -218,7 +218,7 @@ int Character::getCharVel(){
 }
 
 SDL_Surface* Character::getSurface(){
-	return myimage;
+	return surface;
 }
 
 void Character::setHealth(int num){
@@ -230,7 +230,7 @@ void Character::setCharVel(int num){
 }
 
 void Character::setSurface(SDL_Surface*& img_name){
-	myimage = img_name;
+	surface = img_name;
 }
 
 

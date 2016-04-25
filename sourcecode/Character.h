@@ -39,7 +39,7 @@ class Character {
 	
 
 	protected:
-		SDL_Surface* myimage;  // SDL surface of character
+		SDL_Surface* surface;  // SDL surface of character
 		int image;             // determines left or right image		// DERIVED
 		int charVel;	       // stores character velocity
 		int bullet;
