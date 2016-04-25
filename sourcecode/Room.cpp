@@ -11,22 +11,34 @@
 
 using namespace std;
 
-const int ROOM_WIDTH = 960;     // room width
-const int ROOM_HEIGHT = 768;    // room height
-const int ROOM_BPP = 32;        // room bits per pixel
-const int FRAMES_PER_SECOND = 60;  // frame rate
+const int ROOM_WIDTH        = 960;   // room width
+const int ROOM_HEIGHT       = 768;   // room height
+const int ROOM_BPP          = 32;    // room bits per pixel
+const int FRAMES_PER_SECOND = 60;    // frame rate
 
 
 Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enemy3(800,600){    // constructor
+	// Initialize SDL
 	init();
 	background = load_image(filename);
 	apply_surface(0,0,background,window);
 	update_screen();
+
+	// Assign surfaces to objects
+	SDL_Surface* temp_surface;
+
 	character_left=load_image("images/leprechaun_left.bmp");
 	character_right=load_image("images/leprechaun_right.bmp");
-	enemy1_surface=load_image("images/michigan.bmp");
-	enemy2_surface=load_image("images/e2.bmp");
-	enemy3_surface=load_image("images/boi.bmp");
+
+	temp_surface = load_image("images/michigan.bmp");
+	enemy1.setSurface(temp_surface);
+
+	temp_surface = load_image("images/e2.bmp");
+	enemy2.setSurface(temp_surface);
+
+	temp_surface = load_image("images/boi.bmp");
+	enemy3.setSurface(temp_surface);
+
 	bullet_surface=load_image("images/football.bmp");
 	item_surface=load_image("images/question-mark.bmp");
 	health1_surface=load_image("images/health1.bmp");
@@ -40,10 +52,10 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 Room::~Room(){    // deconstructor
 	SDL_FreeSurface(character_left);
 	SDL_FreeSurface(character_right);
-	SDL_FreeSurface(enemy1_surface);
-	SDL_FreeSurface(enemy2_surface);
-	SDL_FreeSurface(enemy3_surface);
 	SDL_FreeSurface(item_surface);
+	SDL_FreeSurface(enemy1.getSurface());
+	SDL_FreeSurface(enemy2.getSurface());
+	SDL_FreeSurface(enemy3.getSurface());
 	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(health1_surface);
 	SDL_FreeSurface(health2_surface);
@@ -71,9 +83,9 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
-		apply_surface(enemy1.getX(),enemy1.getY(),enemy1_surface, window);
-		apply_surface(enemy2.getX(),enemy2.getY(),enemy2_surface, window);
-		apply_surface(enemy3.getX(),enemy3.getY(),enemy3_surface, window);
+		apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
+		apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);
+		apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
 		apply_surface(450,344, item_surface, window);
 		if(player.getHealth() == 5)
 			apply_surface(0, 0, health1_surface, window);

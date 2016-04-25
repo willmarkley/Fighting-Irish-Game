@@ -22,9 +22,6 @@ class Room{
 		SDL_Surface *window = NULL;       // window
 		SDL_Surface *character_left = NULL;  // character surface
 		SDL_Surface *character_right = NULL; //character surface
-		SDL_Surface *enemy1_surface = NULL;  // character surface
-		SDL_Surface *enemy2_surface = NULL;  // character surface
-		SDL_Surface *enemy3_surface = NULL;  // character surface
 		SDL_Surface *bullet_surface = NULL;  // character surface
 		SDL_Surface *item_surface = NULL;  // item surface
 		SDL_Surface *health1_surface = NULL;

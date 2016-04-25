@@ -1,7 +1,7 @@
 all:	main
 
 main: main.o Room.o Character.o Item.o Enemy.o
-	g++ -o main main.o Room.o Character.o Item.o Enemy.o -lSDL -lSDL_image
+	g++ -g -o main main.o Room.o Character.o Item.o Enemy.o -lSDL -lSDL_image
 
 main.o: main.cpp
 	g++ -c main.cpp

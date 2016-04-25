@@ -5,16 +5,15 @@
 #include <string>
 #include "Character.h"
 #include <iostream>
-
 using namespace std;
 
+const int CHARACTER_WIDTH  = 100;  // character width
+const int CHARACTER_HEIGHT = 89;   // character height
+const int BULLET_WIDTH     = 40;   // character width
+const int BULLET_HEIGHT    = 28;   // character height
+const int ROOM_WIDTH       = 960;  // room width
+const int ROOM_HEIGHT      = 768;  // room height
 
-const int CHARACTER_WIDTH = 100;   // character width
-const int CHARACTER_HEIGHT = 89;  // character height
-const int BULLET_WIDTH = 40;   // character width
-const int BULLET_HEIGHT = 28;  // character height
-const int ROOM_WIDTH = 960;     // room width
-const int ROOM_HEIGHT = 768;    // room height
 
 Character::Character(int a, int b){        // constructor
     // initialize the offsets
@@ -27,10 +26,12 @@ Character::Character(int a, int b){        // constructor
     lastPressed=4;
     charVel = 5;
     health = 5;
+
     // initialize the velocity
     xVel = 0;
     yVel = 0;
 }
+
 
 void Character::handle_input(SDL_Event* event){
     //If a key was pressed
@@ -39,9 +40,9 @@ void Character::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP: yVel -= charVel; lastPressed=1; break;
-            case SDLK_DOWN: yVel += charVel; lastPressed=2;break;
-            case SDLK_LEFT: xVel -= charVel; image = 0; lastPressed=3; break;
+            case SDLK_UP:    yVel -= charVel; lastPressed=1; break;
+            case SDLK_DOWN:  yVel += charVel; lastPressed=2;break;
+            case SDLK_LEFT:  xVel -= charVel; image = 0; lastPressed=3; break;
             case SDLK_RIGHT: xVel += charVel; image = 1; lastPressed=4; break;
             case SDLK_SPACE: bullet=1; break;
         }
@@ -52,9 +53,9 @@ void Character::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP: yVel += charVel; break;
-            case SDLK_DOWN: yVel -= charVel; break;
-            case SDLK_LEFT: xVel += charVel; break;
+            case SDLK_UP:    yVel += charVel; break;
+            case SDLK_DOWN:  yVel -= charVel; break;
+            case SDLK_LEFT:  xVel += charVel; break;
             case SDLK_RIGHT: xVel -= charVel; break;
 			case SDLK_SPACE:
 					if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
@@ -66,6 +67,7 @@ void Character::handle_input(SDL_Event* event){
         }
     }
 }
+
 
 void Character::move(Character e1, Character e2, Character e3){
     //Move the character left or right
@@ -109,6 +111,7 @@ void Character::move(Character e1, Character e2, Character e3){
 
 }
 
+
 void Character::shoot(int x, int y, int bullet, int lastPressed){
     if (bullet == 0){
         xBullet = img_rectangle.x;
@@ -126,6 +129,7 @@ void Character::shoot(int x, int y, int bullet, int lastPressed){
         }
     }
 }
+
 
 bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
     int leftr1, leftr2;
@@ -170,19 +174,26 @@ bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
     return true;  // collision detected
 }
 
-int Character::getX(){           // returns X position
+
+/*
+	GET and SET Functions
+		-See Character.h for descriptions
+*/
+
+
+int Character::getX(){
 	return img_rectangle.x;
 }
 
-int Character::getY(){           // returns Y position
+int Character::getY(){
 	return img_rectangle.y;
 }
 
-int Character::getxBullet(){           // returns X position
+int Character::getxBullet(){
 	return xBullet;
 }
 
-int Character::getyBullet(){           // returns Y position
+int Character::getyBullet(){
 	return yBullet;
 }
 
@@ -206,6 +217,10 @@ int Character::getCharVel(){
 	return charVel;
 }
 
+SDL_Surface* Character::getSurface(){
+	return myimage;
+}
+
 void Character::setHealth(int num){
 	health = num;
 }
@@ -213,4 +228,10 @@ void Character::setHealth(int num){
 void Character::setCharVel(int num){
 	charVel = num;
 }
+
+void Character::setSurface(SDL_Surface*& img_name){
+	myimage = img_name;
+}
+
+
 
