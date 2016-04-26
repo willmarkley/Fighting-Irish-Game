@@ -30,6 +30,7 @@ class Room{
 		SDL_Surface *health3_surface = NULL; // health surface 3
 		SDL_Surface *health4_surface = NULL; // health surface 4
 		SDL_Surface *health5_surface = NULL; // health surface 5
+		SDL_Surface *dead = NULL; // death screen surface
 
 		SDL_Event event;   // the event structure (to handle key presses)
 		Player player;     // main player

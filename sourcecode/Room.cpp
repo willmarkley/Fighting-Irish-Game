@@ -3,6 +3,10 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
+#include <stdlib.h>
+#include <cstdlib>
+#include <unistd.h>
+#include <iostream>
 #include "Room.h"
 #include "Character.h"
 #include "Timer.h"
@@ -10,6 +14,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Bullet.h"
+
 using namespace std;
 
 const int ROOM_WIDTH        = 960;   // room width
@@ -46,6 +51,7 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	health3_surface=load_image("images/health3.bmp");
 	health4_surface=load_image("images/health4.bmp");
 	health5_surface=load_image("images/health5.bmp");
+	dead=load_image("images/youdied.bmp");
 }
 
 
@@ -64,6 +70,7 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(health5_surface);
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(window);
+	SDL_FreeSurface(dead);
 	SDL_Quit();
 }
 
@@ -112,7 +119,16 @@ void Room::play(){
 		} else if (player.getImage() == 1){
 			apply_surface(player.getX(),player.getY(),player.getSurface(),window);
 		}
+		
+		if(player.getHealth() == 0){
+			apply_surface(0,0, dead, window);
+			update_screen();
+			sleep(5);
+			QUIT = true;
+		}
 		update_screen();
+		
+	
 		
 // NOT SURE IF WE NEED this block		//Cap the frame rate
 		if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ){

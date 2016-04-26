@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <stdlib.h> 
+#include <cstdlib>
 
 using namespace std;
 
@@ -13,5 +15,7 @@ int main(){
 	Room r1("images/background.bmp");
 	
 	r1.play();
+	
+		
 	return 0;
 }
