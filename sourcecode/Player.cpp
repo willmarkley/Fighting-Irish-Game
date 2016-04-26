@@ -24,7 +24,7 @@ Player::Player(int a, int b) : Character(a, b){        // constructor
 	// initialize values
     image       = 1;
     lastPressed = 4;
-    charVel     = 10;
+    charVel     = 7;
 	health      = 5;
 }
 
