@@ -61,6 +61,9 @@ void Enemy::move(Character player, Character e2, Character e3){
         //move back
         img_rectangle.x -= 10*xVel;
 		health -= 1;
+		player.setHealth(player.getHealth()-1);
+		cout << health << endl;
+		cout << player.getHealth() << endl;
     }
 
     //Move the character up or down
@@ -77,7 +80,10 @@ void Enemy::move(Character player, Character e2, Character e3){
     {
         //move back
         img_rectangle.y -= 10*yVel;
+		player.setHealth(player.getHealth()-1);
 		health -= 1;
+		cout << health << endl;
+		cout << player.getHealth() << endl;
     }
 
 	if (random == 1){
