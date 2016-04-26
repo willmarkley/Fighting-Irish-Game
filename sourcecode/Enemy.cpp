@@ -29,7 +29,7 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
 	//health     = 3;
 }
 
-void Enemy::move(Player player, Character e2, Character e3){
+void Enemy::move(Player &p1, Character &e2, Character &e3){
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;
@@ -57,12 +57,17 @@ void Enemy::move(Player player, Character e2, Character e3){
 		img_rectangle.x = ROOM_WIDTH - CHARACTER_WIDTH;
 	}
 	//If Collision with another Character after changing x position
-	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	if (collision_detect(img_rectangle,p1.img_rectangle))
     {
         // change x position back
-        img_rectangle.x -= xVel;
-		player.setHealth(player.getHealth() - 1);
+        img_rectangle.x -= 10*xVel;
+		p1.setHealth(p1.getHealth() - 1);
+		cout << "Player Obj H: "<< p1.getHealth() << endl;
     }
+	if(collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	{
+		img_rectangle.x -= 10*xVel;
+	}
 
     //Move the character up or down
     img_rectangle.y += yVel;
@@ -77,12 +82,17 @@ void Enemy::move(Player player, Character e2, Character e3){
     }
 
 	//If Collision with another Character after changing y position
-	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	if (collision_detect(img_rectangle,p1.img_rectangle))
     {
         // change x position back
-        img_rectangle.y -= yVel;
-		player.setHealth(player.getHealth() - 1);
+        img_rectangle.y -= 10*yVel;
+		p1.setHealth(p1.getHealth() - 1);
+		cout << "Player Obj H: "<< p1.getHealth() << endl;
     }
+	if(collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+	{
+		img_rectangle.y -= 10*yVel;
+	}
 
 	if (random == 1){
 		yVel += charVel;

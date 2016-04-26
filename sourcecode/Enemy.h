@@ -10,9 +10,9 @@ using namespace std;
 class Enemy: public Character {
 	
 	public:
-		Enemy(int=100, int=100);	                              // constructor
-		void move(Player player, Character e2, Character e3);  // moves the enemy while checking for collisions
-		// void enemyShoot(); not used
+		Enemy(int=100, int=100);	                     // constructor
+		void move(Player&, Character&, Character&);      // moves the enemy while checking for collisions
+
 	private:
 		int random;
 		int ranCounter;

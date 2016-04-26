@@ -24,7 +24,7 @@ Player::Player(int a, int b) : Character(a, b){        // constructor
 	// initialize values
     image       = 1;
     lastPressed = 4;
-    charVel     = 7;
+    charVel     = 5;
 	health      = 5;
 }
 
@@ -45,8 +45,9 @@ void Player::move(Character e1, Character e2, Character e3){
     if(collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         // change x position back
-        img_rectangle.x -= xVel;
+        img_rectangle.x -= 10*xVel;
 		health -= 1;
+		cout << "PLAYER FUNC HEALTH: " << health << endl;
     }
 
     //Move the character up or down
@@ -65,8 +66,9 @@ void Player::move(Character e1, Character e2, Character e3){
     if(collision_detect(img_rectangle,e1.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
         // change x position back
-        img_rectangle.y -= yVel;
+        img_rectangle.y -= 10*yVel;
 		health -= 1;
+		cout << "PLAYER FUNC HEALTH: " << health << endl;
     }
 	
 
@@ -139,4 +141,5 @@ int Player::getHealth(){
 
 void Player::setHealth(int num){
 	health = num;
+	cout << "SET HEALTH: " << health << endl;
 }
