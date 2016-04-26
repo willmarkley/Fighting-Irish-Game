@@ -22,14 +22,10 @@ const int ROOM_HEIGHT      = 768;  // room height
 
 Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
     // initialize the offsets
-	incomingBullet.x = getxBullet();
-	incomingBullet.y = getyBullet();
-	incomingBullet.h = BULLET_HEIGHT;
-	incomingBullet.w = BULLET_WIDTH;
+
 
 	// initialize values
     charVel    = 3;
-    health     = 3;
 	random     = 0;
 	ranCounter = 100;
 }
@@ -64,15 +60,9 @@ void Enemy::move(Character player, Character e2, Character e3){
     {
         //move back
         img_rectangle.x -= 10*xVel;
-		player.setHealth(player.getHealth() - 1);
+		health -= 1;
     }
 
-	if(collision_detect(e2.img_rectangle, incomingBullet) || collision_detect(e3.img_rectangle, incomingBullet) || collision_detect(player.img_rectangle, incomingBullet)){
-		health -= 1;
-		bullet = 0;
-		xBullet = img_rectangle.x;
-		yBullet = img_rectangle.y;
-	}
     //Move the character up or down
     img_rectangle.y += yVel;
 
@@ -87,8 +77,9 @@ void Enemy::move(Character player, Character e2, Character e3){
     {
         //move back
         img_rectangle.y -= 10*yVel;
-		player.setHealth(player.getHealth() - 1);
+		health -= 1;
     }
+	
 	if (random == 1){
 		yVel += charVel;
 	} else if (random == 2){

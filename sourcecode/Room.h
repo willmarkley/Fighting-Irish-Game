@@ -35,6 +35,7 @@ class Room{
 		Enemy enemy1;      // enemy 1
 		Enemy enemy2;      // enemy 2
 		Enemy enemy3;      // enemy 3
+		Player bullet;		//bullet
 		Item item1;        // item 1
 
 		bool init();                                                // initilizes SDL

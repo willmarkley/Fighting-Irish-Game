@@ -46,6 +46,13 @@ void Player::move(Character e1, Character e2, Character e3){
         img_rectangle.x -= 10*xVel;
 		health -= 1;
     }
+	if(collision_detect(incomingBullet,e1.img_rectangle) || collision_detect(incomingBullet,e2.img_rectangle) || collision_detect(incomingBullet,e3.img_rectangle))
+	{
+		enemyHealth -= 1;
+		bullet = 0;
+		xBullet = img_rectangle.x;
+		yBullet = img_rectangle.y;
+	}
 
     //Move the character up or down
     img_rectangle.y += yVel;
@@ -63,6 +70,15 @@ void Player::move(Character e1, Character e2, Character e3){
         img_rectangle.y -= 10*yVel;
 		health -= 1;
     }
+	if(collision_detect(incomingBullet,e1.img_rectangle) || collision_detect(incomingBullet,e2.img_rectangle) || collision_detect(incomingBullet,e3.img_rectangle))
+	{
+		enemyHealth -= 1;
+		bullet = 0;
+		xBullet = img_rectangle.x;
+		yBullet = img_rectangle.y;
+	}
+
+	
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
 		xBullet = img_rectangle.x;
