@@ -10,12 +10,12 @@
 using namespace std;
 
 // Constants
-const int CHARACTER_WIDTH  = 100;  // character width
-const int CHARACTER_HEIGHT = 89;   // character height
-const int BULLET_WIDTH     = 40;   // character width
-const int BULLET_HEIGHT    = 28;   // character height
-const int ROOM_WIDTH       = 960;  // room width
-const int ROOM_HEIGHT      = 768;  // room height
+const int CHARACTER_WIDTH  = 100;  // Character width
+const int CHARACTER_HEIGHT = 89;   // Character height
+const int BULLET_WIDTH     = 40;   // Bullet width
+const int BULLET_HEIGHT    = 28;   // Bullet height
+const int ROOM_WIDTH       = 960;  // Room width
+const int ROOM_HEIGHT      = 768;  // Room height
 
 
 // Functions
