@@ -9,6 +9,7 @@
 #include "Item.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Bullet.h"
 using namespace std;
 
 const int ROOM_WIDTH        = 960;   // room width
@@ -17,7 +18,7 @@ const int ROOM_BPP          = 32;    // room bits per pixel
 const int FRAMES_PER_SECOND = 60;    // frame rate
 
 
-Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enemy3(800,600){    // constructor
+Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enemy3(800,600), bullet(200,300){    // constructor
 	// Initialize SDL
 	init();
 	background = load_image(filename);
@@ -83,10 +84,10 @@ void Room::play(){
 
 		apply_surface(0,0,background,window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
-		//bullet.move(enemy1, enemy2, enemy3);
 		enemy1.move(player, enemy2, enemy3);
 		enemy2.move(player, enemy1, enemy3);
 		enemy3.move(player, enemy2, enemy1);
+		bullet.move(enemy1, enemy2, enemy3, player);
 
 		apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);

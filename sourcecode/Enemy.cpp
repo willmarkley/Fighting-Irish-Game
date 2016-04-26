@@ -28,6 +28,7 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
     charVel    = 3;
 	random     = 0;
 	ranCounter = 100;
+	enemyHealth = 3;
 }
 
 void Enemy::move(Character player, Character e2, Character e3){
@@ -79,7 +80,7 @@ void Enemy::move(Character player, Character e2, Character e3){
         img_rectangle.y -= 10*yVel;
 		health -= 1;
     }
-	
+
 	if (random == 1){
 		yVel += charVel;
 	} else if (random == 2){
