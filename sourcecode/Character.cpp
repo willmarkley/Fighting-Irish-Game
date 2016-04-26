@@ -24,10 +24,6 @@ Character::Character(int a, int b){
     img_rectangle.y = b;
     img_rectangle.h = CHARACTER_HEIGHT;
     img_rectangle.w = CHARACTER_WIDTH;
-	incomingBullet.x = xBullet;
-	incomingBullet.y = yBullet;
-	incomingBullet.h = BULLET_HEIGHT;
-	incomingBullet.w = BULLET_WIDTH;
 
 	// initialize the values
     bullet  = 0;
@@ -61,40 +57,40 @@ void Character::shoot(int x, int y, int bullet, int lastPressed){
 
 
 bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
-    int leftr1, leftr2;
-    int rightr1, rightr2;
-    int topr1, topr2;
-    int bottomr1, bottomr2;
+    int left1, left2;
+    int right1, right2;
+    int top1, top2;
+    int bottom1, bottom2;
 
     //Calculate the sides of rect r1
-    leftr1 = r1.x;
-    rightr1 = r1.x + r1.w;
-    topr1 = r1.y;
-    bottomr1 = r1.y + r1.h;    
+    left1 = r1.x;
+    right1 = r1.x + r1.w;
+    top1 = r1.y;
+    bottom1 = r1.y + r1.h;    
 
     //Calculate the sides of rect r2
-    leftr2 = r2.x;
-    rightr2 = r2.x + r2.w;
-    topr2 = r2.y;
-    bottomr2 = r2.y + r2.h;
+    left2 = r2.x;
+    right2 = r2.x + r2.w;
+    top2 = r2.y;
+    bottom2 = r2.y + r2.h;
 
     // if any r1 sides exist outside r2
-    if( bottomr1 <= topr2 )
+    if( bottom1 <= top2 )
     {
         return false;
     }
 
-    if( topr1 >= bottomr2 )
+    if( top1 >= bottom2 )
     {
         return false;
     }
 
-    if( rightr1 <= leftr2 )
+    if( right1 <= left2 )
     {
         return false;
     }
 
-    if( leftr1 >= rightr2 )
+    if( left1 >= right2 )
     {
         return false;
     }

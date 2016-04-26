@@ -14,10 +14,11 @@ class Item {
 		void randItem();                 // creates random Item
 		SDL_Surface* getSurface();       // returns a pointer to the SDL surface
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
+		SDL_Rect itemBox;
 
 	private:
 		SDL_Surface* surface;
-		int Items;	// stores item selection
+		int ItemCreate;	// stores item selection
 };
 
 #endif

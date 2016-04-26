@@ -35,7 +35,7 @@ class Character {
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
 
 		SDL_Rect img_rectangle;  // SDL rectangle that represents an image
-		SDL_Rect incomingBullet; // SDL rectangle representing the bullet
+		//SDL_Rect incomingBullet; // SDL rectangle representing the bullet
 
 	protected:
 		SDL_Surface* surface;  // SDL surface of character

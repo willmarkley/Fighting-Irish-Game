@@ -45,7 +45,10 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	enemy3.setSurface(temp_surface);
 	temp_surface = load_image("images/question-mark.bmp");
 	item1.setSurface(temp_surface);
-	bullet_surface=load_image("images/football.bmp");
+
+	temp_surface = load_image("images/football.bmp");
+	bullet.setSurface(temp_surface);	
+
 	health1_surface=load_image("images/health1.bmp");
 	health2_surface=load_image("images/health2.bmp");
 	health3_surface=load_image("images/health3.bmp");
@@ -62,7 +65,7 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
 	SDL_FreeSurface(enemy3.getSurface());
-	SDL_FreeSurface(bullet_surface);
+	SDL_FreeSurface(bullet.getSurface());
 	SDL_FreeSurface(health1_surface);
 	SDL_FreeSurface(health2_surface);
 	SDL_FreeSurface(health3_surface);
@@ -112,7 +115,7 @@ void Room::play(){
 			apply_surface(0, 0, health5_surface, window);
 		
 		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
-		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
+		apply_surface(player.getxBullet(), player.getyBullet(), bullet.getSurface(), window);
 
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),player.getSurfaceLeft(),window);
