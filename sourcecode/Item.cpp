@@ -8,6 +8,8 @@
 #include <stdlib.h>
 using namespace std;
 
+// Constants
+
 Item::Item() {		//Constructor
 	Items = 0;
 }
@@ -23,7 +25,7 @@ void Item::Check(Character c) {		//Checks what item was picked up
 		c.setHealth(c.getHealth() + 1);	
 	}
 	else if( Items == 2){
-		c.setCharVel(c.getCharVel() + 4);
+		c.setCharVel(c.getCharVel() + 8);
 	}
 	else if( Items == 3){
 		c.setHealth(c.getHealth() - 1);
