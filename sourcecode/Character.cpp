@@ -24,10 +24,6 @@ Character::Character(int a, int b){
     img_rectangle.y = b;
     img_rectangle.h = CHARACTER_HEIGHT;
     img_rectangle.w = CHARACTER_WIDTH;
-	incomingBullet.x = xBullet;
-	incomingBullet.y = yBullet;
-	incomingBullet.h = BULLET_HEIGHT;
-	incomingBullet.w = BULLET_WIDTH;
 
 	// initialize the values
     bullet  = 0;

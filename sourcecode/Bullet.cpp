@@ -22,7 +22,10 @@ const int ROOM_HEIGHT      = 768;  // room height
 
 Bullet::Bullet(int a, int b) : Character(a, b){        // constructor
     // initialize the offsets
-	placeholder = 0;
+	incomingBullet.x = getxBullet();
+	incomingBullet.y = getyBullet();
+	incomingBullet.h = BULLET_HEIGHT;
+	incomingBullet.w = BULLET_WIDTH;
 
 	// initialize values
 
