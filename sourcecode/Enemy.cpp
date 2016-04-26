@@ -4,6 +4,7 @@
 #include "SDL/SDL_image.h"
 #include <string>
 #include "Enemy.h"
+#include "Player.h"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -25,10 +26,10 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
     charVel    = 3;
 	random     = 0;
 	ranCounter = 100;
-	health     = 3;
+	//health     = 3;
 }
 
-void Enemy::move(Character player, Character e2, Character e3){
+void Enemy::move(Player player, Character e2, Character e3){
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;
@@ -60,6 +61,7 @@ void Enemy::move(Character player, Character e2, Character e3){
     {
         // change x position back
         img_rectangle.x -= xVel;
+		player.setHealth(player.getHealth() - 1);
     }
 
     //Move the character up or down
@@ -79,9 +81,10 @@ void Enemy::move(Character player, Character e2, Character e3){
     {
         // change x position back
         img_rectangle.y -= yVel;
+		player.setHealth(player.getHealth() - 1);
     }
 
-/*	if (random == 1){
+	if (random == 1){
 		yVel += charVel;
 	} else if (random == 2){
 		yVel -= charVel;
@@ -89,7 +92,7 @@ void Enemy::move(Character player, Character e2, Character e3){
 		xVel += charVel;
 	} else if (random == 4){
 		xVel -= charVel;
-	}    */
+	}    
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
 		xBullet = img_rectangle.x;

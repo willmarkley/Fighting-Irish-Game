@@ -46,6 +46,7 @@ void Player::move(Character e1, Character e2, Character e3){
     {
         // change x position back
         img_rectangle.x -= xVel;
+		health -= 1;
     }
 
     //Move the character up or down
@@ -65,15 +66,16 @@ void Player::move(Character e1, Character e2, Character e3){
     {
         // change x position back
         img_rectangle.y -= yVel;
+		health -= 1;
     }
 	
-/*
+
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
 		xBullet = img_rectangle.x;
 		yBullet = img_rectangle.y;
 	}
-*/
+
 
 }
 
@@ -131,5 +133,10 @@ void Player::setSurfaceLeft(SDL_Surface*& img_name){
 	surface_Left = img_name;
 }
 
+int Player::getHealth(){
+	return health;
+}
 
-
+void Player::setHealth(int num){
+	health = num;
+}

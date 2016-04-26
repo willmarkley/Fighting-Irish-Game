@@ -17,8 +17,11 @@ class Player: public Character {
 		int getPressed();                                    // returns the last pressed key
 		SDL_Surface* getSurfaceLeft();                       // returns a pointer to the left SDL surface
 		void setSurfaceLeft(SDL_Surface*&);                  // sets pointer to the left SDL surface
+		int getHealth();
+		void setHealth(int);
 
 	private:
+		int health;					//character health
 		int image;                  // determines left or right image
 		int lastPressed;            // represents the last key pressed
 		SDL_Surface* surface_Left;  // SDL surface of character

@@ -35,13 +35,13 @@ void Item::randItem() {
 void Item::Check(Character player) {		//Checks what item was picked up
 	if (1){
 		if( ItemCreate == 1){
-			player.setHealth(player.getHealth() + 1);	
+			//player.setHealth(player.getHealth() + 1);	
 		}
 		else if( ItemCreate == 2){
-			player.setCharVel(player.getCharVel() + 8);
+			//player.setCharVel(player.getCharVel() + 8);
 		}
 		else if( ItemCreate == 3){
-			player.setHealth(player.getHealth() - 1);
+			//player.setHealth(player.getHealth() - 1);
 		}
 	}
 }

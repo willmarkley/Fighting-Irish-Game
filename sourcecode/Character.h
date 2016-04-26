@@ -25,12 +25,12 @@ class Character {
 		void setBullet(int);		// sets bullet value
 		int getxBullet();           // returns bullet x position
 		int getyBullet();           // returns bullet y position
-		int getHealth();	        // returns health
+		//int getHealth();	        // returns health
 		int getCharVel();	        // returns character velocity
 		SDL_Surface* getSurface();  // returns a pointer to the SDL surface
 
 		// set functions
-		void setHealth(int);	         // sets character health
+		//void setHealth(int);	         // sets character health
 		void setCharVel(int);	         // sets character velocity
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
 
@@ -42,7 +42,7 @@ class Character {
 		int charVel;	       // stores character velocity
 		int bullet;            // bullet that the character shoots
 		int xVel, yVel;        // X and Y velocity of the character
-		int health,enemyHealth;            // character health
+		//int health,enemyHealth;            // character health
 		int xBullet, yBullet, pressed;    // determines the bullet shooting
 };
 

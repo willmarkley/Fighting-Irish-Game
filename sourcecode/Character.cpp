@@ -128,9 +128,9 @@ void Character::setBullet(int num){
 	bullet = num;
 }
 
-int Character::getHealth(){
+/*int Character::getHealth(){
 	return health;
-}
+}*/
 
 int Character::getCharVel(){
 	return charVel;
@@ -140,9 +140,9 @@ SDL_Surface* Character::getSurface(){
 	return surface;
 }
 
-void Character::setHealth(int num){
+/*void Character::setHealth(int num){
 	health = num;
-}
+}*/
 
 void Character::setCharVel(int num){
 	charVel = num;
