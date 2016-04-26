@@ -7,6 +7,7 @@
 #include <iostream>
 using namespace std;
 
+// Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
 const int BULLET_WIDTH     = 40;   // character width
@@ -15,57 +16,21 @@ const int ROOM_WIDTH       = 960;  // room width
 const int ROOM_HEIGHT      = 768;  // room height
 
 
+// Functions
+
 Character::Character(int a, int b){        // constructor
     // initialize the offsets
     img_rectangle.x = a;
     img_rectangle.y = b;
     img_rectangle.h = CHARACTER_HEIGHT;
     img_rectangle.w = CHARACTER_WIDTH;
-    image = 1;
+
+	// initialize the values
     bullet=0;
-    lastPressed=4;
     charVel = 5;
     health = 5;
-
-    // initialize the velocity
     xVel = 0;
     yVel = 0;
-}
-
-
-void Character::handle_input(SDL_Event* event){
-    //If a key was pressed
-    if( event->type == SDL_KEYDOWN )
-    {
-        //Adjust the velocity
-        switch( event->key.keysym.sym )
-        {
-            case SDLK_UP:    yVel -= charVel; lastPressed=1; break;
-            case SDLK_DOWN:  yVel += charVel; lastPressed=2;break;
-            case SDLK_LEFT:  xVel -= charVel; image = 0; lastPressed=3; break;
-            case SDLK_RIGHT: xVel += charVel; image = 1; lastPressed=4; break;
-            case SDLK_SPACE: bullet=1; break;
-        }
-    }
-    //If a key was released
-    else if( event->type == SDL_KEYUP )
-    {
-        //Adjust the velocity
-        switch( event->key.keysym.sym )
-        {
-            case SDLK_UP:    yVel += charVel; break;
-            case SDLK_DOWN:  yVel -= charVel; break;
-            case SDLK_LEFT:  xVel += charVel; break;
-            case SDLK_RIGHT: xVel -= charVel; break;
-			case SDLK_SPACE:
-					if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
-						bullet = 0;
-						xBullet = img_rectangle.x;
-						yBullet = img_rectangle.y;
-					}
-				break;
-        }
-    }
 }
 
 
@@ -197,16 +162,8 @@ int Character::getyBullet(){
 	return yBullet;
 }
 
-int Character::getImage(){
-	return image;
-}
-
 int Character::getBullet(){
 	return bullet;
-}
-
-int Character::getPressed(){
-	return lastPressed;
 }
 
 int Character::getHealth(){

@@ -8,7 +8,7 @@
 #include "Timer.h"
 #include "Item.h"
 #include "Enemy.h"
-
+#include "Player.h"
 using namespace std;
 
 const int ROOM_WIDTH        = 960;   // room width
@@ -27,21 +27,18 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	// Assign surfaces to objects
 	SDL_Surface* temp_surface;
 
-	character_left=load_image("images/leprechaun_left.bmp");
-	character_right=load_image("images/leprechaun_right.bmp");
-
+	temp_surface = load_image("images/leprechaun_left.bmp");
+	player.setSurfaceLeft(temp_surface);
+	temp_surface = load_image("images/leprechaun_right.bmp");
+	player.setSurface(temp_surface);
 	temp_surface = load_image("images/michigan.bmp");
 	enemy1.setSurface(temp_surface);
-
 	temp_surface = load_image("images/e2.bmp");
 	enemy2.setSurface(temp_surface);
-
 	temp_surface = load_image("images/boi.bmp");
 	enemy3.setSurface(temp_surface);
-
 	temp_surface = load_image("images/question-mark.bmp");
 	item1.setSurface(temp_surface);
-
 	bullet_surface=load_image("images/football.bmp");
 	health1_surface=load_image("images/health1.bmp");
 	health2_surface=load_image("images/health2.bmp");
@@ -52,8 +49,8 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 
 
 Room::~Room(){    // deconstructor
-	SDL_FreeSurface(character_left);
-	SDL_FreeSurface(character_right);
+	SDL_FreeSurface(player.getSurface());
+	SDL_FreeSurface(player.getSurfaceLeft());
 	SDL_FreeSurface(item1.getSurface());
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
@@ -85,6 +82,11 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
+		player.move(enemy1,enemy2,enemy3);  // move player according to input
+		enemy1.enemyMove(player, enemy2, enemy3);
+		enemy2.enemyMove(player, enemy1, enemy3);
+		enemy3.enemyMove(player, enemy2, enemy1);
+
 		apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);
 		apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
@@ -99,16 +101,14 @@ void Room::play(){
 			apply_surface(0, 0, health4_surface, window);
 		else if(player.getHealth() == 1)
 			apply_surface(0, 0, health5_surface, window);
-		player.move(enemy1,enemy2,enemy3);  // move player according to input
-		enemy1.enemyMove(player, enemy2, enemy3);
-		enemy2.enemyMove(player, enemy1, enemy3);
-		enemy3.enemyMove(player, enemy2, enemy1);
+		
 		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
 		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
+
 		if (player.getImage() == 0){
-			apply_surface(player.getX(),player.getY(),character_left,window);
+			apply_surface(player.getX(),player.getY(),player.getSurfaceLeft(),window);
 		} else if (player.getImage() == 1){
-			apply_surface(player.getX(),player.getY(),character_right,window);
+			apply_surface(player.getX(),player.getY(),player.getSurface(),window);
 		}
 		update_screen();
 		

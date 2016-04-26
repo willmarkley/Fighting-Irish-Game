@@ -1,4 +1,5 @@
 // Enemy Derived Class Header File
+
 #include "Character.h"
 using namespace std;
 
@@ -12,9 +13,6 @@ class Enemy: public Character {
 		void enemyMove(Character player, Character e2, Character e3);
 		void enemyShoot();
 		SDL_Rect incomingBullet;
-
-	protected:
-		int enemyHealth;
 
 	private:
 		int random, ranCounter;
