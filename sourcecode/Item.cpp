@@ -33,7 +33,7 @@ void Item::randItem() {
 
 
 void Item::Check(Character player) {		//Checks what item was picked up
-	if (collision_detect(itemBox,player.img_rectangle)){
+	if (1){
 		if( ItemCreate == 1){
 			player.setHealth(player.getHealth() + 1);	
 		}

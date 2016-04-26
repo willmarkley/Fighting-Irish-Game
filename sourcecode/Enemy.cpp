@@ -21,13 +21,11 @@ const int ROOM_HEIGHT      = 768;  // room height
 // Functions
 
 Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
-    // initialize the offsets
-
-
 	// initialize values
     charVel    = 3;
 	random     = 0;
 	ranCounter = 100;
+	health     = 3;
 }
 
 void Enemy::move(Character player, Character e2, Character e3){
@@ -49,44 +47,41 @@ void Enemy::move(Character player, Character e2, Character e3){
 	//Move the character left or right
     img_rectangle.x += xVel;
 
-    //If the character went too far to the left or right
+    //If the character went too far to the left
     if(img_rectangle.x < 0){
 		img_rectangle.x = 0;
 	}
-	if( img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH ){
+	//If the character went too far to the right
+	if(img_rectangle.x + CHARACTER_WIDTH > ROOM_WIDTH){
 		img_rectangle.x = ROOM_WIDTH - CHARACTER_WIDTH;
 	}
+	//If Collision with another Character after changing x position
 	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
     {
-        //move back
-        img_rectangle.x -= 10*xVel;
-		health -= 1;
-		player.setHealth(player.getHealth()-1);
-		cout << health << endl;
-		cout << player.getHealth() << endl;
+        // change x position back
+        img_rectangle.x -= xVel;
     }
 
     //Move the character up or down
     img_rectangle.y += yVel;
 
-    //If the character went too far up or down
-    if( img_rectangle.y < 0 ){
+    //If the character went too far up
+    if(img_rectangle.y < 0){
 		img_rectangle.y = 0;
- 	}
-	if( img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT ){
-		img_rectangle.y = ROOM_HEIGHT - CHARACTER_HEIGHT;
 	}
-	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
-    {
-        //move back
-        img_rectangle.y -= 10*yVel;
-		player.setHealth(player.getHealth()-1);
-		health -= 1;
-		cout << health << endl;
-		cout << player.getHealth() << endl;
+	//If the character went too far updown
+	if(img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT){
+		img_rectangle.y = ROOM_HEIGHT - CHARACTER_HEIGHT;
     }
 
-	if (random == 1){
+	//If Collision with another Character after changing y position
+	if (collision_detect(img_rectangle,player.img_rectangle) || collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
+    {
+        // change x position back
+        img_rectangle.y -= yVel;
+    }
+
+/*	if (random == 1){
 		yVel += charVel;
 	} else if (random == 2){
 		yVel -= charVel;
@@ -94,10 +89,13 @@ void Enemy::move(Character player, Character e2, Character e3){
 		xVel += charVel;
 	} else if (random == 4){
 		xVel -= charVel;
-	}    
+	}    */
 	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
 		bullet = 0;
 		xBullet = img_rectangle.x;
 		yBullet = img_rectangle.y;
 	}
 }
+
+
+

@@ -29,8 +29,6 @@ Character::Character(int a, int b){
     bullet  = 0;
     xVel    = 0;
     yVel    = 0;
-	health = 5;
-	enemyHealth = 3;
 }
 
 
