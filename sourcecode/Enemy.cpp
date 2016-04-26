@@ -28,16 +28,13 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
 	incomingBullet.w = BULLET_WIDTH;
 
 	// initialize values
-    bullet=0;
-    charVel = 3;
-    health = 3;
-    xVel = 0;
-    yVel = 0;
-	random = 0;
+    charVel    = 3;
+    health     = 3;
+	random     = 0;
 	ranCounter = 100;
 }
 
-void Enemy::enemyMove(Character player, Character e2, Character e3){
+void Enemy::move(Character player, Character e2, Character e3){
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;

@@ -9,13 +9,14 @@ using namespace std;
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+
 class Character {
 
 	public:
-		Character(int=500,int=500);                           // constructor
-		void move(Character e1, Character e2, Character e3);  // moves the character while checking for collisions
-		void shoot(int, int, int, int);                       // allows the character to shoot projectiles
-		bool collision_detect(SDL_Rect r1, SDL_Rect r2);      // collision detection function
+		Character(int=500,int=500);                          // constructor
+		virtual void move(Character, Character, Character);  // virtual function that is redefined in derived classes
+		void shoot(int, int, int, int);                      // allows the character to shoot projectiles
+		bool collision_detect(SDL_Rect r1, SDL_Rect r2);     // collision detection function
 
 		// get functions
 		int getX();                 // returns X position
@@ -37,7 +38,7 @@ class Character {
 	protected:
 		SDL_Surface* surface;  // SDL surface of character
 		int charVel;	       // stores character velocity
-		int bullet;
+		int bullet;            // bullet that the character shoots
 		int xVel, yVel;        // X and Y velocity of the character
 		int health;            // character health
 		int xBullet, yBullet, pressed;    // determines the bullet shooting

@@ -83,9 +83,9 @@ void Room::play(){
 
 		apply_surface(0,0,background,window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
-		enemy1.enemyMove(player, enemy2, enemy3);
-		enemy2.enemyMove(player, enemy1, enemy3);
-		enemy3.enemyMove(player, enemy2, enemy1);
+		enemy1.move(player, enemy2, enemy3);
+		enemy2.move(player, enemy1, enemy3);
+		enemy3.move(player, enemy2, enemy1);
 
 		apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
 		apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);
