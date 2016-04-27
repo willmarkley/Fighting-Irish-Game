@@ -55,6 +55,7 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	dead=load_image("images/youdied.bmp");
 	won = load_image("images/won.bmp");
 	level1 = load_image("images/level1.bmp");
+
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
