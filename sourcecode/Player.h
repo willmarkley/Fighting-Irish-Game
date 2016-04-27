@@ -21,6 +21,7 @@ class Player: public Character {
 		SDL_Surface* getSurfaceLeft();                       // returns a pointer to the left SDL surface
 		void setSurfaceLeft(SDL_Surface*&);                  // sets pointer to the left SDL surface
 		void collision(Character&, Character&, Character&); //checks bullet collision with enemies
+		int getItemHit();
 
 	private:
 		int image;                  // determines left or right image
@@ -29,6 +30,7 @@ class Player: public Character {
 		int pressed;                // represents key press
 		SDL_Surface* surface_Left;  // SDL surface of character
 		SDL_Rect incomingBullet;    // Rectange of Bullet
+		int itemHit;
 };
 
 #endif

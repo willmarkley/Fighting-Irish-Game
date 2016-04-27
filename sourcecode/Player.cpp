@@ -25,6 +25,7 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	// initialize values
     image       = 1;
     lastPressed = 4;
+	itemHit		= 0;
 	if(round == 1 || round == 2){
     	charVel     = 5;
 		health      = 5;
@@ -81,7 +82,8 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 		health -= 1;
     }
 	
-	if(collision_detect(img_rectangle,item.getRect())){
+	if(collision_detect(img_rectangle,item.getRect()) && !(itemHit)){
+		itemHit = 1;
 		item.Check(*this);
 	}
 
@@ -196,3 +198,6 @@ int Player::getyBullet(){
 	return incomingBullet.y;
 }
 
+int Player::getItemHit(){
+	return itemHit;
+}

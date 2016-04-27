@@ -119,7 +119,9 @@ void Room::play(){
 			enemy3.move(player, enemy2, enemy1);
 			apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
 		}
-		apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
+		if ( !(player.getItemHit()) ) {
+			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
+		}
 		if(player.getHealth() == 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
