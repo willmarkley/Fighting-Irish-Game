@@ -28,7 +28,7 @@ Item::Item() {		//Constructor
 
 
 void Item::randItem() {
-	ItemCreate = rand() % 3 + 1;
+	ItemCreate = rand() % 5 + 1;
 }
 
 
@@ -51,6 +51,14 @@ void Item::Check(Character& player) {		//Checks what item was picked up
 		if(timer is done)
 			player.setHealth(HP);*/
 	}
+}
+
+int Item::getItemX() {
+	return ItemBox.x;
+}
+
+int Item::getItemY() {
+	return ItemBox.y;
 }
 
 

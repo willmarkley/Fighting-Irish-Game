@@ -15,7 +15,8 @@ class Item {
 		SDL_Surface* getSurface();       // returns a pointer to the SDL surface
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
 		SDL_Rect getRect();              // returns SDL Rectangle of item
-
+		int getItemX();
+		int getItemY();
 	private:
 		SDL_Surface* surface;
 		SDL_Rect itemBox;
