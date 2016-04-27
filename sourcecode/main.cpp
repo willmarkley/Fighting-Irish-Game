@@ -12,7 +12,7 @@ using namespace std;
 
 int main(){
 	srand(time(NULL));
-	Room r1("images/background.bmp");
+	Room r1("images/NDField.bmp");
 	
 	r1.play();
 	
