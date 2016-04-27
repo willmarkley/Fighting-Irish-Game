@@ -1,11 +1,11 @@
 # User Manual
 
 
-Project Contributors:
-	Paul Lee
-	Henry Long
-	Will Markley
-	Kevin Shin
+__Project Contributors:__  
+  Paul Lee  
+  Henry Long  
+  Will Markley  
+  Kevin Shin  
 
 
 ####1. Special libraries needed to build/compile if personal machines were used
@@ -33,13 +33,12 @@ If the player comes in contact with an enemy, its health bar in the top left cor
 The player can beat the game by shooting bullets at the enemies.  Each enemy has a health value that is decremented upon being hit with a bullet.  When an empty loses all of it's health, it disappears from the game.  When all the enemies in a level have been defeated, the player advances to the next level of the game.  After beating the last level, 3rd in our case, the game ends and the player is notified that they have won.
 
 ######Items
-A player can collide with the **?** box on the screen to recieve an item.  Items are randomized and could be one of the following:
-
-Increase player health
-Decrease player health
-Increase player speed
-Decrease player speed
-Give the player a health of 10 (Normally 5)
+A player can collide with the **?** box on the screen to recieve an item.  Items are randomized and could be one of the following:  
+  Increase player health  
+  Decrease player health  
+  Increase player speed  
+  Decrease player speed  
+  Give the player a health of 10 (Normally 5)  
 		
 
 ####4. Known bugs.
