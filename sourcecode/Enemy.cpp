@@ -27,6 +27,9 @@ Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
 	}else if(round == 2){
 		charVel = 5;
 		health = 5;
+	}else if(round == 3){
+		charVel = 7;
+		health = 9;
 	}
 	random     = 0;
 	ranCounter = 100;

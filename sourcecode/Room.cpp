@@ -55,6 +55,7 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	dead=load_image("images/youdied.bmp");
 	won = load_image("images/won.bmp");
 	level1 = load_image("images/level1.bmp");
+	level2 = load_image("images/level2.bmp");
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
@@ -81,6 +82,7 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(dead);
 	SDL_FreeSurface(won);
 	SDL_FreeSurface(level1);
+	SDL_FreeSurface(level2);
 	SDL_Quit();
 }
 
@@ -174,7 +176,7 @@ void Room::play(){
 	
 		if (e1==0 && e2==0 && e3==0 && level==2){
 			apply_surface(0,0, won, window);
-			apply_surface(200, 0, level1, window);
+			apply_surface(100, 0, level2, window);
 			update_screen();
 			sleep(5);
 			player.shoot(player.getX(), player.getY(), player.getPressed());
@@ -183,6 +185,13 @@ void Room::play(){
 			QUIT = true;		
 		}		
 
+		if (e1==0 && e2==0 && e3==0 && level==3){
+			apply_surface(0,0, won, window);
+			update_screen();
+			sleep(5);
+			QUIT = true;		
+		}		
+		
 		update_screen();
 
 // NOT SURE IF WE NEED this block		//Cap the frame rate

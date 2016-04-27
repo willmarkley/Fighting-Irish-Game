@@ -25,8 +25,13 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	// initialize values
     image       = 1;
     lastPressed = 4;
-    charVel     = 5;
-	health      = 5;
+	if(round == 1 || round == 2){
+    	charVel     = 5;
+		health      = 5;
+	} else if (round == 3){
+		charVel = 4;
+		health = 4;
+	}
 
 	// initialize bullet
     bullet  = 0;

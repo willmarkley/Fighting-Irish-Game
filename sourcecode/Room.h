@@ -33,7 +33,7 @@ class Room{
 		SDL_Surface *dead = NULL; // death screen surface
 		SDL_Surface *won = NULL; // winning screen surface
 		SDL_Surface *level1 = NULL; // passing level 1 screen surface
-		SDL_Surface *level2 = NULL; // passing level 1 screen surface
+		SDL_Surface *level2 = NULL; // passing level 2 screen surface
 
 
 		SDL_Event event;   // the event structure (to handle key presses)
