@@ -36,16 +36,34 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	player.setSurfaceLeft(temp_surface);
 	temp_surface = load_image("images/leprechaun_right.bmp");
 	player.setSurface(temp_surface);
-	temp_surface = load_image("images/michigan.bmp");
-	enemy1.setSurface(temp_surface);
-	temp_surface = load_image("images/bc.bmp");
-	enemy2.setSurface(temp_surface);
-	temp_surface = load_image("images/usc.bmp");
-	enemy3.setSurface(temp_surface);
 	temp_surface = load_image("images/question-mark.bmp");
 	item1.setSurface(temp_surface);
 
-	bullet_surface = load_image("images/football.bmp");	
+	if(round == 1){
+		temp_surface = load_image("images/michigan.bmp");
+		enemy1.setSurface(temp_surface);
+		temp_surface = load_image("images/fsu.bmp");
+		enemy2.setSurface(temp_surface);
+		temp_surface = load_image("images/usc.bmp");
+		enemy3.setSurface(temp_surface);
+		bullet_surface = load_image("images/football.bmp");
+	}else if(round == 2){
+		temp_surface = load_image("images/duke.bmp");
+		enemy1.setSurface(temp_surface);
+		temp_surface = load_image("images/unc.bmp");
+		enemy2.setSurface(temp_surface);
+		temp_surface = load_image("images/iu.bmp");
+		enemy3.setSurface(temp_surface);
+		bullet_surface = load_image("images/ball.bmp");
+	}else if(round == 3){
+		temp_surface = load_image("images/villanova.bmp");
+		enemy1.setSurface(temp_surface);
+		temp_surface = load_image("images/bc.bmp");
+		enemy2.setSurface(temp_surface);
+		temp_surface = load_image("images/stanford.bmp");
+		enemy3.setSurface(temp_surface);
+		bullet_surface = load_image("images/books.bmp");
+	}
 
 	health1_surface=load_image("images/health1.bmp");
 	health2_surface=load_image("images/health2.bmp");
@@ -122,6 +140,7 @@ void Room::play(){
 		if ( !(player.getItemHit()) ) {
 			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
 		}
+
 		if(player.getHealth() == 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
