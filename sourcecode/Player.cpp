@@ -7,6 +7,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include "Item.h"
 using namespace std;
 
 // Constants
@@ -35,25 +36,7 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	incomingBullet.w = BULLET_WIDTH;
 }
 
-void Player::collision(Character& e1, Character& e2, Character& e3){
-	// Collides with e1
-	if(collision_detect(incomingBullet,e1.img_rectangle)){
-		e1.setHealth(e1.getHealth() - 1);
-		bullet=0;
-	}
-	// Collides with e2
-	if(collision_detect(incomingBullet,e2.img_rectangle)){
-		e2.setHealth(e2.getHealth() - 1);
-		bullet=0;
-	}
-	// Collides with e3
-	if(collision_detect(incomingBullet,e3.img_rectangle)){
-		e3.setHealth(e3.getHealth() - 1);
-		bullet=0;
-    }
-}
-
-void Player::move(Character e1, Character e2, Character e3){
+void Player::move(Character e1, Character e2, Character e3, Item item){
     //Move the character left or right
     img_rectangle.x += xVel;
 
@@ -93,6 +76,10 @@ void Player::move(Character e1, Character e2, Character e3){
 		health -= 1;
     }
 	
+	if(collision_detect(img_rectangle,item.getRect())){
+		item.Check(*this);
+	}
+
 
 	if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 		bullet = 0;
@@ -139,6 +126,7 @@ void Player::handle_input(SDL_Event* event){
     }
 }
 
+
 void Player::shoot(int x, int y, int lastPressed){
     if (bullet == 0){
 		incomingBullet.x = img_rectangle.x;
@@ -156,6 +144,25 @@ void Player::shoot(int x, int y, int lastPressed){
         }
     }
 	
+}
+
+
+void Player::collision(Character& e1, Character& e2, Character& e3){
+	// Collides with e1
+	if(collision_detect(incomingBullet,e1.img_rectangle)){
+		e1.setHealth(e1.getHealth() - 1);
+		bullet=0;
+	}
+	// Collides with e2
+	if(collision_detect(incomingBullet,e2.img_rectangle)){
+		e2.setHealth(e2.getHealth() - 1);
+		bullet=0;
+	}
+	// Collides with e3
+	if(collision_detect(incomingBullet,e3.img_rectangle)){
+		e3.setHealth(e3.getHealth() - 1);
+		bullet=0;
+    }
 }
 
 

@@ -7,7 +7,6 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Item.h"
-//#include "Bullet.h"
 using namespace std;
 
 #ifndef ROOM_H
@@ -42,9 +41,8 @@ class Room{
 		Enemy enemy1;      // enemy 1
 		Enemy enemy2;      // enemy 2
 		Enemy enemy3;      // enemy 3
-		Enemy enemyBeat;  // new enemy with a position off the grid
-		//Bullet bullet;		//bullet
-		//Item item1;        // item 1
+		Enemy enemyBeat;   // new enemy with a position off the grid
+		Item item1;        // item 1
 
 		bool init();                                                // initilizes SDL
 		SDL_Surface *load_image(string filename);                   // loads image to surface

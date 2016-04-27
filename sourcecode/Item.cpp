@@ -32,26 +32,24 @@ void Item::randItem() {
 }
 
 
-void Item::Check(Character player) {		//Checks what item was picked up
-if (1){
-		if( ItemCreate == 1){
-			//player.setHealth(player.getHealth() + 1);	
-		}
-		else if( ItemCreate == 2){
-			//player.setCharVel(player.getCharVel() + 8);
-		}
-		else if( ItemCreate == 3){
-			//player.setHealth(player.getHealth() - 1);
-		}
-		else if( ItemCreate == 4){
-			//player.setCharVel(player.getCharVel() - 4);
-		}
-		else if( ItemCreate == 5){
-			/*HP = player.getCharVel();
-			player.setHealth(-1);	//do this for 5? seconds for invincibility
-			if(timer is done)
-				player.setHealth(HP);*/
-		}
+void Item::Check(Character& player) {		//Checks what item was picked up
+	if( ItemCreate == 1){
+		//player.setHealth(player.getHealth() + 1);	
+	}
+	else if( ItemCreate == 2){
+		//player.setCharVel(player.getCharVel() + 8);
+	}
+	else if( ItemCreate == 3){
+		//player.setHealth(player.getHealth() - 1);
+	}
+	else if( ItemCreate == 4){
+		//player.setCharVel(player.getCharVel() - 4);
+	}
+	else if( ItemCreate == 5){
+		/*HP = player.getCharVel();
+		player.setHealth(-1);	//do this for 5? seconds for invincibility
+		if(timer is done)
+			player.setHealth(HP);*/
 	}
 }
 
@@ -65,3 +63,7 @@ void Item::setSurface(SDL_Surface*& img_name){
 	surface = img_name;
 }
 
+
+SDL_Rect Item::getRect(){
+	return itemBox;
+}

@@ -17,9 +17,9 @@
 using namespace std;
 
 const int ROOM_WIDTH        = 1092;   // room width
-const int ROOM_HEIGHT       = 602;   // room height
-const int ROOM_BPP          = 32;    // room bits per pixel
-const int FRAMES_PER_SECOND = 60;    // frame rate
+const int ROOM_HEIGHT       = 602;    // room height
+const int ROOM_BPP          = 32;     // room bits per pixel
+const int FRAMES_PER_SECOND = 60;     // frame rate
 
 
 Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, round), enemy2(200,600, round), enemy3(800,600, round), enemyBeat(-1000,-1000, round){    // constructor
@@ -42,8 +42,8 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	enemy2.setSurface(temp_surface);
 	temp_surface = load_image("images/usc.bmp");
 	enemy3.setSurface(temp_surface);
-	//temp_surface = load_image("images/question-mark.bmp");
-	//item1.setSurface(temp_surface);
+	temp_surface = load_image("images/question-mark.bmp");
+	item1.setSurface(temp_surface);
 
 	bullet_surface = load_image("images/football.bmp");	
 
@@ -55,7 +55,6 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	dead=load_image("images/youdied.bmp");
 	won = load_image("images/won.bmp");
 	level1 = load_image("images/level1.bmp");
-
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
@@ -66,7 +65,7 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 Room::~Room(){    // deconstructor
 	SDL_FreeSurface(player.getSurface());
 	SDL_FreeSurface(player.getSurfaceLeft());
-	//SDL_FreeSurface(item1.getSurface());
+	SDL_FreeSurface(item1.getSurface());
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
 	SDL_FreeSurface(enemy3.getSurface());
@@ -101,7 +100,7 @@ void Room::play(){
 		}
 
 		apply_surface(0,0,background,window);
-		player.move(enemy1,enemy2,enemy3);  // move player according to input
+		player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
 		player.collision(enemy1, enemy2, enemy3);
 		
 
@@ -117,7 +116,7 @@ void Room::play(){
 			enemy3.move(player, enemy2, enemy1);
 			apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
 		}
-		//apply_surface(450,344, item1.getSurface(), window);
+		apply_surface(450,344, item1.getSurface(), window);
 		if(player.getHealth() == 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
@@ -168,7 +167,7 @@ void Room::play(){
 			update_screen();
 			sleep(5);
 			player.shoot(player.getX(), player.getY(), player.getPressed());
-			player.move(enemy1,enemy2,enemy3);  // move player according to input
+			player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
 			player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}
@@ -179,7 +178,7 @@ void Room::play(){
 			update_screen();
 			sleep(5);
 			player.shoot(player.getX(), player.getY(), player.getPressed());
-			player.move(enemy1,enemy2,enemy3);  // move player according to input
+			player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
 			player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}		

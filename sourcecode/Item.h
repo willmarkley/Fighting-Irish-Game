@@ -10,14 +10,15 @@ class Item {
 
 	public:
 		Item();				             // constructor
-		void Check(Character c);         // checks what item is picked up
+		void Check(Character&);         // checks what item is picked up
 		void randItem();                 // creates random Item
 		SDL_Surface* getSurface();       // returns a pointer to the SDL surface
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
-		SDL_Rect itemBox;
+		SDL_Rect getRect();              // returns SDL Rectangle of item
 
 	private:
 		SDL_Surface* surface;
+		SDL_Rect itemBox;
 		int ItemCreate;	// stores item selection
 		int HP;			// stores health
 };

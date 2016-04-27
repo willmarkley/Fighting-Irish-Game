@@ -1,6 +1,7 @@
 // Player Derived Class Header File
 
 #include "Character.h"
+#include "Item.h"
 using namespace std;
 
 #ifndef PLAYER_H
@@ -9,9 +10,9 @@ using namespace std;
 class Player: public Character {
 	
 	public:
-		Player(int=100, int=100,int=1);	                         //Constructor
-		void move(Character e1, Character e2, Character e3); // moves the character while checking for collisions
-		void shoot(int, int, int);                      // allows the character to shoot projectiles
+		Player(int=100, int=100,int=1);	                     //Constructor
+		void move(Character, Character, Character, Item);    // moves the character while checking for collisions
+		void shoot(int, int, int);                           // allows the character to shoot projectiles
 		void handle_input(SDL_Event* event);                 // handles key presses and adjusts the character's velocity
 		int getImage();                                      // returns which image to use
 		int getPressed();                                    // returns the last pressed key
