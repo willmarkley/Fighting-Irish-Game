@@ -84,7 +84,8 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 	
 	if(collision_detect(img_rectangle,item.getRect()) && !(itemHit)){
 		itemHit = 1;
-		item.Check(*this);
+		item.Check(this);
+		cout << getHealth() << " p " << endl;
 	}
 
 
@@ -131,6 +132,7 @@ void Player::handle_input(SDL_Event* event){
 				break;
         }
     }
+	cout << charVel << endl;
 }
 
 

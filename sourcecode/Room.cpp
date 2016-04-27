@@ -13,7 +13,6 @@
 #include "Item.h"
 #include "Enemy.h"
 #include "Player.h"
-
 using namespace std;
 
 const int ROOM_WIDTH        = 1092;   // room width

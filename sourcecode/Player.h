@@ -29,7 +29,7 @@ class Player: public Character {
 		int bullet;                 // bullet that the character shoots
 		int pressed;                // represents key press
 		SDL_Surface* surface_Left;  // SDL surface of character
-		SDL_Rect incomingBullet;    // Rectange of Bullet
+		SDL_Rect incomingBullet;    // Rectangle of Bullet
 		int itemHit;
 };
 

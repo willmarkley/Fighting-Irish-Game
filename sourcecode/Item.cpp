@@ -19,7 +19,9 @@ const int ROOM_WIDTH       = 1092;  // Room width
 const int ROOM_HEIGHT      = 602;  // Room height
 
 Item::Item() {		//Constructor
+	time_t start, end;
 	ItemCreate = 0;
+	randItem();
 	itemBox.x = 450;
 	itemBox.y = 344;
 	itemBox.h = ITEM_HEIGHT;
@@ -28,34 +30,38 @@ Item::Item() {		//Constructor
 
 
 void Item::randItem() {
-	ItemCreate = rand() % 5 + 1;
+	ItemCreate = 2;//rand() % 4 + 1;
 }
 
 
-void Item::Check(Character& player) {		//Checks what item was picked up
+void Item::Check(Character* player) {		//Checks what item was picked up
 	if( ItemCreate == 1){
-		//player.setHealth(player.getHealth() + 1);	
+		if( player->getHealth() < 5 ){
+			player->setHealth(player->getHealth() + 1);
+		}
 	}
 	else if( ItemCreate == 2){
-		//player.setCharVel(player.getCharVel() + 8);
+		player->setCharVel(player->getCharVel() * 2);
 	}
 	else if( ItemCreate == 3){
-		//player.setHealth(player.getHealth() - 1);
+		player->setHealth(player->getHealth() - 1);
 	}
 	else if( ItemCreate == 4){
-		//player.setCharVel(player.getCharVel() - 4);
+		player->setCharVel(player->getCharVel() - 1);
 	}
 	else if( ItemCreate == 5){
-		/*HP = player.getCharVel();
-		player.setHealth(-1);	//do this for 5? seconds for invincibility
-		if(timer is done)
-			player.setHealth(HP);*/
+		HP = player->getHealth();
+		player->setHealth(-1);	//do this for 5? seconds for invincibility
+		//if(timer is done)
+		//	player->setHealth(HP);
 	}
 }
+
 
 int Item::getItemX() {
 	return itemBox.x;
 }
+
 
 int Item::getItemY() {
 	return itemBox.y;
