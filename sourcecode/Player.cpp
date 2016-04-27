@@ -133,10 +133,10 @@ void Player::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP:     yVel += charVel; break;
-            case SDLK_DOWN:   yVel -= charVel; break;
-            case SDLK_LEFT:   xVel += charVel; break;
-            case SDLK_RIGHT:  xVel -= charVel; break;
+            case SDLK_UP:     if(charVel == 5) {yVel += charVel;} else{ yVel = -1;} break;
+            case SDLK_DOWN:   if(charVel == 5) {yVel -= charVel;} else{ yVel = 1;} break;
+            case SDLK_LEFT:   if(charVel == 5) {xVel += charVel;} else{ xVel = -1;} break;
+            case SDLK_RIGHT:  if(charVel == 5) {xVel -= charVel;} else{ xVel = 1;} break;
 			case SDLK_SPACE:
 					if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 						bullet = 0;
