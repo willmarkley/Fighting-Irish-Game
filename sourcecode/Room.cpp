@@ -104,6 +104,7 @@ Room::~Room(){    // deconstructor
 }
 
 void Room::play(){ 
+    srand(time(0));
     Timer fps;   // frame rate regulator								// NOT SURE IF WE NEED TIMER  (or any calls to fps)
 	bool QUIT=false;
 

@@ -22,7 +22,7 @@ class Item {
 		SDL_Surface* surface;		// SDL surface of item
 		SDL_Rect itemBox;			// rectangle of item
 		int ItemCreate;	// stores item selection
-		int HP;			// stores health
+		//int HP;			// stores health
 };
 
 #endif

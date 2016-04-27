@@ -23,19 +23,19 @@ const int ROOM_HEIGHT      = 602;  // room height
 
 Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	// initialize values
-    image       = 1;
-    lastPressed = 4;
+	image       = 1;
+	lastPressed = 4;
 	itemHit		= 0;
 	if(round == 1 || round == 2){
     	charVel     = 5;
-		health      = 5;
+	health      = 5;
 	} else if (round == 3){
 		charVel = 4;
 		health = 4;
 	}
 
 	// initialize bullet
-    bullet  = 0;
+   	bullet  = 0;
 	incomingBullet.x = img_rectangle.x;
 	incomingBullet.y = img_rectangle.y;
 	incomingBullet.h = BULLET_HEIGHT;
@@ -67,8 +67,8 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 
     //If the character went too far up
     if(img_rectangle.y < 0){
-		img_rectangle.y = 0;
-	}
+	img_rectangle.y = 0;
+    }
 	//If the character went too far updown
 	if(img_rectangle.y + CHARACTER_HEIGHT > ROOM_HEIGHT){
 		img_rectangle.y = ROOM_HEIGHT - CHARACTER_HEIGHT;
@@ -85,7 +85,6 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 	if(collision_detect(img_rectangle,item.getRect()) && !(itemHit)){
 		itemHit = 1;
 		item.Check(this);
-		cout << getHealth() << " p " << endl;
 	}
 
 
@@ -119,10 +118,10 @@ void Player::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP:    yVel += charVel; break;
-            case SDLK_DOWN:  yVel -= charVel; break;
-            case SDLK_LEFT:  xVel += charVel; break;
-            case SDLK_RIGHT: xVel -= charVel; break;
+            case SDLK_UP:    if(charVel == 5){ yVel += charVel; } else{ yVel = -2; } break;
+            case SDLK_DOWN:  if(charVel == 5){ yVel -= charVel; } else{ yVel = 2; } break;
+            case SDLK_LEFT:  if(charVel == 5){ xVel += charVel; } else{ xVel = -2; } break;
+            case SDLK_RIGHT: if(charVel == 5){ xVel -= charVel; } else{ xVel = 2; } break;
 			case SDLK_SPACE:
 					if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 						bullet = 0;

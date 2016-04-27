@@ -30,7 +30,7 @@ Item::Item() {		//Constructor
 
 
 void Item::randItem() {
-	ItemCreate = 2;//rand() % 4 + 1;
+	ItemCreate = rand() % 5 + 1;
 }
 
 
@@ -41,21 +41,22 @@ void Item::Check(Character* player) {		//Checks what item was picked up
 		}
 	}
 	else if( ItemCreate == 2){
-		player->setCharVel(player->getCharVel() * 2);
+		player->setCharVel(player->getCharVel() + 3);
 	}
 	else if( ItemCreate == 3){
 		player->setHealth(player->getHealth() - 1);
 	}
 	else if( ItemCreate == 4){
 		player->setCharVel(player->getCharVel() - 1);
+		if(player->getCharVel() >= 8){
+			player->setCharVel(player->getCharVel() - 3);
+		}
 	}
 	else if( ItemCreate == 5){
-		HP = player->getHealth();
-		player->setHealth(-1);	//do this for 5? seconds for invincibility
-		//if(timer is done)
-		//	player->setHealth(HP);
+		player->setHealth(5);
 	}
 }
+
 
 
 int Item::getItemX() {
