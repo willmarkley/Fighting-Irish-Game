@@ -160,7 +160,7 @@ void Room::play(){
 
 
 		if (e1==0 && e2==0 && e3==0){
-			apply_surface(200,0, level1, window);
+			apply_surface(0,0, won, window);
 			update_screen();
 			sleep(5);
 			player.shoot(player.getX(), player.getY(), player.getPressed());	
