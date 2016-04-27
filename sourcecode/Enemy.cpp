@@ -13,18 +13,23 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int ROOM_WIDTH       = 960;  // room width
-const int ROOM_HEIGHT      = 768;  // room height
+const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_HEIGHT      = 602;  // room height
 
 
 // Functions
 
-Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
+Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
 	// initialize values
-    charVel    = 3;
+	if(round == 1){
+	    charVel = 3;
+		health = 3;
+	}else if(round == 2){
+		charVel = 5;
+		health = 5;
+	}
 	random     = 0;
 	ranCounter = 100;
-	health     = 3;
 }
 
 void Enemy::move(Character &p1, Character &e2, Character &e3){

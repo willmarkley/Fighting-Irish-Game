@@ -16,13 +16,13 @@
 
 using namespace std;
 
-const int ROOM_WIDTH        = 960;   // room width
-const int ROOM_HEIGHT       = 768;   // room height
+const int ROOM_WIDTH        = 1092;   // room width
+const int ROOM_HEIGHT       = 602;   // room height
 const int ROOM_BPP          = 32;    // room bits per pixel
 const int FRAMES_PER_SECOND = 60;    // frame rate
 
 
-Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(200,600), enemy3(800,600), enemyBeat(-1000,-1000), new1(100,300), new2(800,650), new3(450, 400), playerNew(ROOM_WIDTH/2,ROOM_HEIGHT/2){    // constructor
+Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, round), enemy2(200,600, round), enemy3(800,600, round), enemyBeat(-1000,-1000, round){    // constructor
 	// Initialize SDL
 	init();
 	background = load_image(filename);
@@ -54,6 +54,7 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(200,600), 
 	health5_surface=load_image("images/health5.bmp");
 	dead=load_image("images/youdied.bmp");
 	won = load_image("images/won.bmp");
+	level1 = load_image("images/level1.bmp");
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
@@ -67,9 +68,6 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
 	SDL_FreeSurface(enemy3.getSurface());
-	SDL_FreeSurface(new1.getSurface());
-	SDL_FreeSurface(new2.getSurface());
-	SDL_FreeSurface(new3.getSurface());
 	SDL_FreeSurface(enemyBeat.getSurface());
 	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(health1_surface);
@@ -80,6 +78,8 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(window);
 	SDL_FreeSurface(dead);
+	SDL_FreeSurface(won);
+	SDL_FreeSurface(level1);
 	SDL_Quit();
 }
 
@@ -160,9 +160,10 @@ void Room::play(){
 
 
 		if (e1==0 && e2==0 && e3==0){
-			apply_surface(0,0, won, window);
+			apply_surface(200,0, level1, window);
 			update_screen();
-			sleep(5);	
+			sleep(5);
+			player.shoot(player.getX(), player.getY(), player.getPressed());	
 			QUIT = true;		
 		}
 	

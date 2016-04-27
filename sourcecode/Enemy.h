@@ -10,7 +10,7 @@ using namespace std;
 class Enemy: public Character {
 	
 	public:
-		Enemy(int=100, int=100);	                     // constructor
+		Enemy(int=100, int=100,int=1);	                     // constructor
 		void move(Character&, Character&, Character&);      // moves the enemy while checking for collisions
 
 	private:

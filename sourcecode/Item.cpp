@@ -15,8 +15,8 @@ const int CHARACTER_WIDTH  = 100;  // Character width
 const int CHARACTER_HEIGHT = 89;   // Character height
 const int ITEM_WIDTH     = 50;   // Item width
 const int ITEM_HEIGHT    = 50;   // Item height
-const int ROOM_WIDTH       = 960;  // Room width
-const int ROOM_HEIGHT      = 768;  // Room height
+const int ROOM_WIDTH       = 1092;  // Room width
+const int ROOM_HEIGHT      = 602;  // Room height
 
 Item::Item() {		//Constructor
 	ItemCreate = 0;

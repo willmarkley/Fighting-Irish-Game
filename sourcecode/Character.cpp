@@ -10,8 +10,8 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int ROOM_WIDTH       = 960;  // room width
-const int ROOM_HEIGHT      = 768;  // room height
+const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_HEIGHT      = 602;  // room height
 
 
 // Functions

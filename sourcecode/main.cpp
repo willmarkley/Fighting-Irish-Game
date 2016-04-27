@@ -12,8 +12,8 @@ using namespace std;
 
 int main(){
 	srand(time(NULL));
-	Room r1("images/NDField.bmp");
-	Room r2("images/basketball.bmp");
+	Room r1("images/NDField.bmp", 1);
+	Room r2("images/basketball.bmp", 2);
 	r1.play();
 	r2.play();
 		

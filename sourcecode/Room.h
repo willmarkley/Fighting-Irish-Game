@@ -16,7 +16,7 @@ using namespace std;
 class Room{
 
 	public:
-		Room(string="");     // constructor
+		Room(string="", int=1);     // constructor
 		~Room();             // deconstructor
 		void play();         // runs the game
 
@@ -32,6 +32,7 @@ class Room{
 		SDL_Surface *health5_surface = NULL; // health surface 5
 		SDL_Surface *dead = NULL; // death screen surface
 		SDL_Surface *won = NULL; // winning screen surface
+		SDL_Surface *level1 = NULL; // winning screen surface
 
 
 		SDL_Event event;   // the event structure (to handle key presses)
@@ -40,10 +41,6 @@ class Room{
 		Enemy enemy2;      // enemy 2
 		Enemy enemy3;      // enemy 3
 		Enemy enemyBeat;  // new enemy with a position off the grid
-		Enemy new1;
-		Enemy new2;
-		Enemy new3;
-		Player playerNew;
 		//Bullet bullet;		//bullet
 		//Item item1;        // item 1
 

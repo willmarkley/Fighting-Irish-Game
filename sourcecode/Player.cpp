@@ -14,13 +14,13 @@ const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
 const int BULLET_WIDTH     = 40;   // character width
 const int BULLET_HEIGHT    = 28;   // character height
-const int ROOM_WIDTH       = 960;  // room width
-const int ROOM_HEIGHT      = 768;  // room height
+const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_HEIGHT      = 602;  // room height
 
 
 // Functions
 
-Player::Player(int a, int b) : Character(a, b){        // constructor
+Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	// initialize values
     image       = 1;
     lastPressed = 4;
