@@ -11,7 +11,7 @@ class Enemy: public Character {
 	
 	public:
 		Enemy(int=100, int=100);	                     // constructor
-		void move(Player&, Character&, Character&);      // moves the enemy while checking for collisions
+		void move(Character&, Character&, Character&);      // moves the enemy while checking for collisions
 
 	private:
 		int random;

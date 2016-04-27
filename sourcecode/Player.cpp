@@ -26,8 +26,32 @@ Player::Player(int a, int b) : Character(a, b){        // constructor
     lastPressed = 4;
     charVel     = 5;
 	health      = 5;
+
+	// initialize bullet
+    bullet  = 0;
+	incomingBullet.x = img_rectangle.x;
+	incomingBullet.y = img_rectangle.y;
+	incomingBullet.h = BULLET_HEIGHT;
+	incomingBullet.w = BULLET_WIDTH;
 }
 
+void Player::collision(Character& e1, Character& e2, Character& e3){
+	// Collides with e1
+	if(collision_detect(incomingBullet,e1.img_rectangle)){
+		e1.setHealth(e1.getHealth() - 1);
+		bullet=0;
+	}
+	// Collides with e2
+	if(collision_detect(incomingBullet,e2.img_rectangle)){
+		e2.setHealth(e2.getHealth() - 1);
+		bullet=0;
+	}
+	// Collides with e3
+	if(collision_detect(incomingBullet,e3.img_rectangle)){
+		e3.setHealth(e3.getHealth() - 1);
+		bullet=0;
+    }
+}
 
 void Player::move(Character e1, Character e2, Character e3){
     //Move the character left or right
@@ -47,7 +71,6 @@ void Player::move(Character e1, Character e2, Character e3){
         // change x position back
         img_rectangle.x -= 10*xVel;
 		health -= 1;
-		cout << "PLAYER FUNC HEALTH: " << health << endl;
     }
 
     //Move the character up or down
@@ -68,14 +91,13 @@ void Player::move(Character e1, Character e2, Character e3){
         // change x position back
         img_rectangle.y -= 10*yVel;
 		health -= 1;
-		cout << "PLAYER FUNC HEALTH: " << health << endl;
     }
 	
 
-	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
+	if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 		bullet = 0;
-		xBullet = img_rectangle.x;
-		yBullet = img_rectangle.y;
+		incomingBullet.x = img_rectangle.x;
+		incomingBullet.y = img_rectangle.y;
 	}
 
 
@@ -107,14 +129,33 @@ void Player::handle_input(SDL_Event* event){
             case SDLK_LEFT:  xVel += charVel; break;
             case SDLK_RIGHT: xVel -= charVel; break;
 			case SDLK_SPACE:
-					if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
+					if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 						bullet = 0;
-						xBullet = img_rectangle.x;
-						yBullet = img_rectangle.y;
+						incomingBullet.x = img_rectangle.x;
+						incomingBullet.y = img_rectangle.y;
 					}
 				break;
         }
     }
+}
+
+void Player::shoot(int x, int y, int lastPressed){
+    if (bullet == 0){
+		incomingBullet.x = img_rectangle.x;
+		incomingBullet.y = img_rectangle.y;
+        pressed = lastPressed;
+    } else if (bullet == 1){
+        if(pressed == 1){
+            incomingBullet.y -= BULLET_HEIGHT;
+        } else if (pressed == 2){
+            incomingBullet.y += BULLET_HEIGHT;
+        } else if (pressed == 3){
+            incomingBullet.x -= BULLET_WIDTH;
+        } else if (pressed == 4){
+            incomingBullet.x += BULLET_WIDTH;
+        }
+    }
+	
 }
 
 
@@ -135,11 +176,11 @@ void Player::setSurfaceLeft(SDL_Surface*& img_name){
 	surface_Left = img_name;
 }
 
-int Player::getHealth(){
-	return health;
+int Player::getxBullet(){
+	return incomingBullet.x;
 }
 
-void Player::setHealth(int num){
-	health = num;
-	cout << "SET HEALTH: " << health << endl;
+int Player::getyBullet(){
+	return incomingBullet.y;
 }
+

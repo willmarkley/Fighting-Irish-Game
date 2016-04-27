@@ -10,8 +10,6 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int BULLET_WIDTH     = 40;   // character width
-const int BULLET_HEIGHT    = 28;   // character height
 const int ROOM_WIDTH       = 960;  // room width
 const int ROOM_HEIGHT      = 768;  // room height
 
@@ -26,32 +24,12 @@ Character::Character(int a, int b){
     img_rectangle.w = CHARACTER_WIDTH;
 
 	// initialize the values
-    bullet  = 0;
     xVel    = 0;
     yVel    = 0;
 }
 
 
 void Character::move(Character e1, Character e2, Character e3){}
-
-
-void Character::shoot(int x, int y, int bullet, int lastPressed){
-    if (bullet == 0){
-        xBullet = img_rectangle.x;
-        yBullet = img_rectangle.y;
-        pressed = lastPressed;
-    } else if (bullet == 1){
-        if(pressed == 1){
-            yBullet -= BULLET_HEIGHT;
-        } else if (pressed == 2){
-            yBullet += BULLET_HEIGHT;
-        } else if (pressed == 3){
-            xBullet -= BULLET_WIDTH;
-        } else if (pressed == 4){
-            xBullet += BULLET_WIDTH;
-        }
-    }
-}
 
 
 bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
@@ -112,25 +90,9 @@ int Character::getY(){
 	return img_rectangle.y;
 }
 
-int Character::getxBullet(){
-	return xBullet;
-}
-
-int Character::getyBullet(){
-	return yBullet;
-}
-
-int Character::getBullet(){
-	return bullet;
-}
-
-void Character::setBullet(int num){
-	bullet = num;
-}
-
-/*int Character::getHealth(){
+int Character::getHealth(){
 	return health;
-}*/
+}
 
 int Character::getCharVel(){
 	return charVel;
@@ -140,9 +102,9 @@ SDL_Surface* Character::getSurface(){
 	return surface;
 }
 
-/*void Character::setHealth(int num){
+void Character::setHealth(int num){
 	health = num;
-}*/
+}
 
 void Character::setCharVel(int num){
 	charVel = num;

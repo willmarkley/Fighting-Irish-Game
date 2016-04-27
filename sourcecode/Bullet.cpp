@@ -31,14 +31,17 @@ Bullet::Bullet(int a, int b) : Character(a, b){        // constructor
 
 }
 
-void Bullet::move(Character e1, Character e2, Character e3, Character player){
-	
-	if (collision_detect(incomingBullet,e1.img_rectangle) || collision_detect(incomingBullet,e2.img_rectangle) || collision_detect(incomingBullet,e3.img_rectangle))
-    {
-        //move back
-		//health -= 1;
-		incomingBullet.x = player.img_rectangle.x;
-		incomingBullet.y = player.img_rectangle.y;
+void Bullet::move(Character& e1, Character& e2, Character& e3){
+	// Collides with e1
+	if(collision_detect(incomingBullet,e1.img_rectangle)){
+		e1.setHealth(e1.getHealth() - 1);
+	}
+	// Collides with e2
+	if(collision_detect(incomingBullet,e2.img_rectangle)){
+		e2.setHealth(e2.getHealth() - 1);
+	}
+	// Collides with e3
+	if(collision_detect(incomingBullet,e3.img_rectangle)){
+		e3.setHealth(e3.getHealth() - 1);
     }
-
 }

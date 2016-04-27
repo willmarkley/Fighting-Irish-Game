@@ -7,7 +7,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Item.h"
-#include "Bullet.h"
+//#include "Bullet.h"
 using namespace std;
 
 #ifndef ROOM_H
@@ -31,19 +31,23 @@ class Room{
 		SDL_Surface *health4_surface = NULL; // health surface 4
 		SDL_Surface *health5_surface = NULL; // health surface 5
 		SDL_Surface *dead = NULL; // death screen surface
+		SDL_Surface *won = NULL; // winning screen surface
+
 
 		SDL_Event event;   // the event structure (to handle key presses)
 		Player player;     // main player
 		Enemy enemy1;      // enemy 1
 		Enemy enemy2;      // enemy 2
 		Enemy enemy3;      // enemy 3
-		Bullet bullet;		//bullet
-		Item item1;        // item 1
+		Enemy enemyNew;  // new enemy with a position off the grid
+		//Bullet bullet;		//bullet
+		//Item item1;        // item 1
 
 		bool init();                                                // initilizes SDL
 		SDL_Surface *load_image(string filename);                   // loads image to surface
 		void apply_surface( int, int, SDL_Surface*, SDL_Surface*);  // applies image to surface
 		bool update_screen();                                       // updates screen
+		int e1, e2, e3;
 };
 
 #endif

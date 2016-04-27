@@ -13,7 +13,7 @@
 #include "Item.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "Bullet.h"
+//#include "Bullet.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ const int ROOM_BPP          = 32;    // room bits per pixel
 const int FRAMES_PER_SECOND = 60;    // frame rate
 
 
-Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enemy3(800,600), bullet(200,300){    // constructor
+Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(200,600), enemy3(800,600), enemyNew(-1000,-1000){    // constructor
 	// Initialize SDL
 	init();
 	background = load_image(filename);
@@ -39,15 +39,14 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	player.setSurface(temp_surface);
 	temp_surface = load_image("images/michigan.bmp");
 	enemy1.setSurface(temp_surface);
-	temp_surface = load_image("images/e2.bmp");
+	temp_surface = load_image("images/bc.bmp");
 	enemy2.setSurface(temp_surface);
-	temp_surface = load_image("images/boi.bmp");
+	temp_surface = load_image("images/usc.bmp");
 	enemy3.setSurface(temp_surface);
-	temp_surface = load_image("images/question-mark.bmp");
-	item1.setSurface(temp_surface);
+	//temp_surface = load_image("images/question-mark.bmp");
+	//item1.setSurface(temp_surface);
 
-	temp_surface = load_image("images/football.bmp");
-	bullet.setSurface(temp_surface);	
+	bullet_surface = load_image("images/football.bmp");	
 
 	health1_surface=load_image("images/health1.bmp");
 	health2_surface=load_image("images/health2.bmp");
@@ -55,17 +54,22 @@ Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(0,0), enem
 	health4_surface=load_image("images/health4.bmp");
 	health5_surface=load_image("images/health5.bmp");
 	dead=load_image("images/youdied.bmp");
+	won = load_image("images/won.bmp");
+	e1 = 1;
+	e2 = 1;
+	e3 = 1;
 }
 
 
 Room::~Room(){    // deconstructor
 	SDL_FreeSurface(player.getSurface());
 	SDL_FreeSurface(player.getSurfaceLeft());
-	SDL_FreeSurface(item1.getSurface());
+	//SDL_FreeSurface(item1.getSurface());
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
 	SDL_FreeSurface(enemy3.getSurface());
-	SDL_FreeSurface(bullet.getSurface());
+	SDL_FreeSurface(enemyNew.getSurface());
+	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(health1_surface);
 	SDL_FreeSurface(health2_surface);
 	SDL_FreeSurface(health3_surface);
@@ -94,15 +98,22 @@ void Room::play(){
 
 		apply_surface(0,0,background,window);
 		player.move(enemy1,enemy2,enemy3);  // move player according to input
-		enemy1.move(player, enemy2, enemy3);
-		enemy2.move(player, enemy1, enemy3);
-		enemy3.move(player, enemy2, enemy1);
-		bullet.move(enemy1, enemy2, enemy3, player);
+		player.collision(enemy1, enemy2, enemy3);
+		
 
-		apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
-		apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);
-		apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
-		apply_surface(450,344, item1.getSurface(), window);
+		if(e1 == 1){
+			enemy1.move(player, enemy2, enemy3);
+			apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
+		}
+		if(e2 == 1){
+			enemy2.move(player, enemy1, enemy3);
+			apply_surface(enemy2.getX(),enemy2.getY(),enemy2.getSurface(), window);
+		}
+		if(e3 == 1){
+			enemy3.move(player, enemy2, enemy1);
+			apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
+		}
+		//apply_surface(450,344, item1.getSurface(), window);
 		if(player.getHealth() == 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
@@ -114,8 +125,8 @@ void Room::play(){
 		else if(player.getHealth() == 1)
 			apply_surface(0, 0, health5_surface, window);
 		
-		player.shoot(player.getX(), player.getY(), player.getBullet(), player.getPressed());
-		apply_surface(player.getxBullet(), player.getyBullet(), bullet.getSurface(), window);
+		player.shoot(player.getX(), player.getY(), player.getPressed());
+		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),player.getSurfaceLeft(),window);
@@ -123,16 +134,40 @@ void Room::play(){
 			apply_surface(player.getX(),player.getY(),player.getSurface(),window);
 		}
 		
+		if(enemy1.getHealth() == 0){
+			e1 = 0;
+			enemy1 = enemyNew;
+		}
+		if(enemy2.getHealth() == 0){
+			e2 = 0;
+			enemy2 = enemyNew;
+		}
+		if(enemy3.getHealth() == 0){
+			e3 = 0;
+			enemy3 = enemyNew;
+		}
+
+		
+
 		if(player.getHealth() == 0){
 			apply_surface(0,0, dead, window);
 			update_screen();
 			sleep(5);
 			QUIT = true;
 		}
-		update_screen();
-		
+
+
+		if (e1==0 && e2==0 && e3==0){
+			apply_surface(0,0, won, window);
+			update_screen();
+			sleep(5);
+			QUIT = true;
+		}
 	
 		
+
+		update_screen();
+
 // NOT SURE IF WE NEED this block		//Cap the frame rate
 		if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ){
         	SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );

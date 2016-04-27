@@ -13,8 +13,6 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int BULLET_WIDTH     = 40;   // character width
-const int BULLET_HEIGHT    = 28;   // character height
 const int ROOM_WIDTH       = 960;  // room width
 const int ROOM_HEIGHT      = 768;  // room height
 
@@ -26,10 +24,10 @@ Enemy::Enemy(int a, int b) : Character(a, b){        // constructor
     charVel    = 3;
 	random     = 0;
 	ranCounter = 100;
-	//health     = 3;
+	health     = 3;
 }
 
-void Enemy::move(Player &p1, Character &e2, Character &e3){
+void Enemy::move(Character &p1, Character &e2, Character &e3){
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;
@@ -62,7 +60,6 @@ void Enemy::move(Player &p1, Character &e2, Character &e3){
         // change x position back
         img_rectangle.x -= 10*xVel;
 		p1.setHealth(p1.getHealth() - 1);
-		cout << "Player Obj H: "<< p1.getHealth() << endl;
     }
 	if(collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
 	{
@@ -87,7 +84,6 @@ void Enemy::move(Player &p1, Character &e2, Character &e3){
         // change x position back
         img_rectangle.y -= 10*yVel;
 		p1.setHealth(p1.getHealth() - 1);
-		cout << "Player Obj H: "<< p1.getHealth() << endl;
     }
 	if(collision_detect(img_rectangle,e2.img_rectangle) || collision_detect(img_rectangle,e3.img_rectangle))
 	{
@@ -103,11 +99,7 @@ void Enemy::move(Player &p1, Character &e2, Character &e3){
 	} else if (random == 4){
 		xVel -= charVel;
 	}    
-	if (xBullet > ROOM_WIDTH || xBullet < 0 || yBullet > ROOM_HEIGHT || yBullet < 0){
-		bullet = 0;
-		xBullet = img_rectangle.x;
-		yBullet = img_rectangle.y;
-	}
+
 }
 
 
