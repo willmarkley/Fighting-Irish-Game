@@ -19,6 +19,7 @@ class Item {
 	private:
 		SDL_Surface* surface;
 		int ItemCreate;	// stores item selection
+		int HP;			// stores health
 };
 
 #endif
