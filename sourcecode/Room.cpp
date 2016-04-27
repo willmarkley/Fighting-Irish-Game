@@ -58,6 +58,7 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, r
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
+	level = round;
 }
 
 
@@ -154,20 +155,33 @@ void Room::play(){
 		if(player.getHealth() == 0){
 			apply_surface(0,0, dead, window);
 			update_screen();
+			level = 0;
 			sleep(5);
 			QUIT = true;
 		}
 
 
-		if (e1==0 && e2==0 && e3==0){
+		if (e1==0 && e2==0 && e3==0 && level==1){
 			apply_surface(0,0, won, window);
+			apply_surface(200, 0, level1, window);
 			update_screen();
 			sleep(5);
-			player.shoot(player.getX(), player.getY(), player.getPressed());	
+			player.shoot(player.getX(), player.getY(), player.getPressed());
+			player.move(enemy1,enemy2,enemy3);  // move player according to input
+			player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}
 	
-		
+		if (e1==0 && e2==0 && e3==0 && level==2){
+			apply_surface(0,0, won, window);
+			apply_surface(200, 0, level1, window);
+			update_screen();
+			sleep(5);
+			player.shoot(player.getX(), player.getY(), player.getPressed());
+			player.move(enemy1,enemy2,enemy3);  // move player according to input
+			player.collision(enemy1, enemy2, enemy3);	
+			QUIT = true;		
+		}		
 
 		update_screen();
 
@@ -260,6 +274,10 @@ bool Room::update_screen(){
 	}
 
 	return true;
+}
+
+int Room::getLevel(){
+	return level;
 }
 
 

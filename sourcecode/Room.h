@@ -19,6 +19,7 @@ class Room{
 		Room(string="", int=1);     // constructor
 		~Room();             // deconstructor
 		void play();         // runs the game
+		int getLevel();
 
 	private:
 		SDL_Surface *background = NULL;      // background image
@@ -32,7 +33,7 @@ class Room{
 		SDL_Surface *health5_surface = NULL; // health surface 5
 		SDL_Surface *dead = NULL; // death screen surface
 		SDL_Surface *won = NULL; // winning screen surface
-		SDL_Surface *level1 = NULL; // winning screen surface
+		SDL_Surface *level1 = NULL; // passing level 1 screen surface
 
 
 		SDL_Event event;   // the event structure (to handle key presses)
@@ -49,6 +50,7 @@ class Room{
 		void apply_surface( int, int, SDL_Surface*, SDL_Surface*);  // applies image to surface
 		bool update_screen();                                       // updates screen
 		int e1, e2, e3;
+		int level;
 };
 
 #endif

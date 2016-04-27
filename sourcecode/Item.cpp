@@ -50,7 +50,7 @@ if (1){
 			/*HP = player.getCharVel();
 			player.setHealth(-1);	//do this for 5? seconds for invincibility
 			if(timer is done)
-				player.setHealth(HP);
+				player.setHealth(HP);*/
 		}
 	}
 }
