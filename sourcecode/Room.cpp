@@ -13,7 +13,6 @@
 #include "Item.h"
 #include "Enemy.h"
 #include "Player.h"
-//#include "Bullet.h"
 
 using namespace std;
 
@@ -23,7 +22,7 @@ const int ROOM_BPP          = 32;    // room bits per pixel
 const int FRAMES_PER_SECOND = 60;    // frame rate
 
 
-Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(200,600), enemy3(800,600), enemyNew(-1000,-1000){    // constructor
+Room::Room(string filename):player(200, 300), enemy1(400,500), enemy2(200,600), enemy3(800,600), enemyBeat(-1000,-1000), new1(100,300), new2(800,650), new3(450, 400), playerNew(ROOM_WIDTH/2,ROOM_HEIGHT/2){    // constructor
 	// Initialize SDL
 	init();
 	background = load_image(filename);
@@ -68,7 +67,10 @@ Room::~Room(){    // deconstructor
 	SDL_FreeSurface(enemy1.getSurface());
 	SDL_FreeSurface(enemy2.getSurface());
 	SDL_FreeSurface(enemy3.getSurface());
-	SDL_FreeSurface(enemyNew.getSurface());
+	SDL_FreeSurface(new1.getSurface());
+	SDL_FreeSurface(new2.getSurface());
+	SDL_FreeSurface(new3.getSurface());
+	SDL_FreeSurface(enemyBeat.getSurface());
 	SDL_FreeSurface(bullet_surface);
 	SDL_FreeSurface(health1_surface);
 	SDL_FreeSurface(health2_surface);
@@ -136,15 +138,15 @@ void Room::play(){
 		
 		if(enemy1.getHealth() == 0){
 			e1 = 0;
-			enemy1 = enemyNew;
+			enemy1 = enemyBeat;
 		}
 		if(enemy2.getHealth() == 0){
 			e2 = 0;
-			enemy2 = enemyNew;
+			enemy2 = enemyBeat;
 		}
 		if(enemy3.getHealth() == 0){
 			e3 = 0;
-			enemy3 = enemyNew;
+			enemy3 = enemyBeat;
 		}
 
 		
@@ -160,8 +162,8 @@ void Room::play(){
 		if (e1==0 && e2==0 && e3==0){
 			apply_surface(0,0, won, window);
 			update_screen();
-			sleep(5);
-			QUIT = true;
+			sleep(5);	
+			QUIT = true;		
 		}
 	
 		

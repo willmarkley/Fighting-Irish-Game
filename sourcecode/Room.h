@@ -39,7 +39,11 @@ class Room{
 		Enemy enemy1;      // enemy 1
 		Enemy enemy2;      // enemy 2
 		Enemy enemy3;      // enemy 3
-		Enemy enemyNew;  // new enemy with a position off the grid
+		Enemy enemyBeat;  // new enemy with a position off the grid
+		Enemy new1;
+		Enemy new2;
+		Enemy new3;
+		Player playerNew;
 		//Bullet bullet;		//bullet
 		//Item item1;        // item 1
 
