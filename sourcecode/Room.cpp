@@ -97,6 +97,7 @@ void Room::play(){
 		    player.handle_input( &event );         // handle the characters events
 
 		    if( event.type == SDL_QUIT ){  // closed window
+				level = 0;
 		        QUIT = true;
 		    }
 		}

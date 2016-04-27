@@ -18,9 +18,13 @@ int main(){
 	r1.play();
 	if(r1.getLevel() == 1){
 		r2.play();
+	} else if (r1.getLevel() == 0){
+		return 0;
 	}	
 	if(r2.getLevel() == 2){
 		r3.play();
-	}
+	} else if (r2.getLevel() == 0){
+		return 0;
+	}	
 	return 0;
 }
