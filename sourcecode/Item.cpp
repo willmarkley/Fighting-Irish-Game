@@ -54,11 +54,11 @@ void Item::Check(Character& player) {		//Checks what item was picked up
 }
 
 int Item::getItemX() {
-	return ItemBox.x;
+	return itemBox.x;
 }
 
 int Item::getItemY() {
-	return ItemBox.y;
+	return itemBox.y;
 }
 
 
