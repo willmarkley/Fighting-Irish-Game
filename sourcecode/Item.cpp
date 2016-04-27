@@ -47,13 +47,10 @@ void Item::Check(Character* player) {		//Checks what item was picked up
 		player->setHealth(player->getHealth() - 1);
 	}
 	else if( ItemCreate == 4){
-		player->setCharVel(player->getCharVel() - 1);
-		if(player->getCharVel() >= 8){
-			player->setCharVel(player->getCharVel() - 3);
-		}
+		player->setCharVel(player->getCharVel() - 2);
 	}
 	else if( ItemCreate == 5){
-		player->setHealth(5);
+		player->setHealth(10);
 	}
 }
 

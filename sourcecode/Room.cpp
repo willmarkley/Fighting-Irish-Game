@@ -21,7 +21,7 @@ const int ROOM_BPP          = 32;     // room bits per pixel
 const int FRAMES_PER_SECOND = 60;     // frame rate
 
 
-Room::Room(string filename,int round):player(200, 300, round), enemy1(400,500, round), enemy2(200,600, round), enemy3(800,600, round), enemyBeat(-1000,-1000, round){    // constructor
+Room::Room(string filename,int round):player(200, 300, round), enemy1(100,0, round), enemy2(200,600, round), enemy3(800,600, round), enemyBeat(-1000,-1000, round){    // constructor
 	// Initialize SDL
 	init();
 	background = load_image(filename);
@@ -141,7 +141,7 @@ void Room::play(){
 			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
 		}
 
-		if(player.getHealth() == 5)
+		if(player.getHealth() >= 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
 			apply_surface(0, 0, health2_surface, window);
@@ -176,7 +176,7 @@ void Room::play(){
 
 		
 
-		if(player.getHealth() == 0){
+		if(player.getHealth() <= 0){
 			apply_surface(0,0, dead, window);
 			update_screen();
 			level = 0;

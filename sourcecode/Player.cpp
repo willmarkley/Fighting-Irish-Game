@@ -26,12 +26,13 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	image       = 1;
 	lastPressed = 4;
 	itemHit		= 0;
+	tempVel = 0;
 	if(round == 1 || round == 2){
     	charVel     = 5;
 		health      = 5;
 	} else if (round == 3){
-		charVel = 4;
-		health = 4;
+		charVel = 7;
+		health = 7;
 	}
 
 	// initialize bullet
@@ -84,7 +85,21 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 	
 	if(collision_detect(img_rectangle,item.getRect()) && !(itemHit)){
 		itemHit = 1;
+		tempVel = charVel;
 		item.Check(this);
+		if(tempVel != charVel && lastPressed==1){
+			yVel += tempVel;
+			yVel -= charVel;
+		}else if(tempVel != charVel && lastPressed==2){
+			yVel -= tempVel;
+			yVel += charVel;
+		}else if(tempVel != charVel && lastPressed==3){
+			xVel += tempVel;
+			xVel -= charVel;
+		}else if(tempVel != charVel && lastPressed==4){
+			xVel -= tempVel;
+			xVel += charVel;
+		}
 	}
 
 
@@ -118,10 +133,10 @@ void Player::handle_input(SDL_Event* event){
         //Adjust the velocity
         switch( event->key.keysym.sym )
         {
-            case SDLK_UP:    if(charVel == 5){ yVel += charVel; } else{ yVel = -2; } break;
-            case SDLK_DOWN:  if(charVel == 5){ yVel -= charVel; } else{ yVel = 2; } break;
-            case SDLK_LEFT:  if(charVel == 5){ xVel += charVel; } else{ xVel = -2; } break;
-            case SDLK_RIGHT: if(charVel == 5){ xVel -= charVel; } else{ xVel = 2; } break;
+            case SDLK_UP:     yVel += charVel; break;
+            case SDLK_DOWN:   yVel -= charVel; break;
+            case SDLK_LEFT:   xVel += charVel; break;
+            case SDLK_RIGHT:  xVel -= charVel; break;
 			case SDLK_SPACE:
 					if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 						bullet = 0;

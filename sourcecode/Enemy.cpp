@@ -25,11 +25,11 @@ Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
 	    charVel = 3;
 		health = 3;
 	}else if(round == 2){
-		charVel = 5;
-		health = 5;
-	}else if(round == 3){
 		charVel = 7;
-		health = 9;
+		health = 10;
+	}else if(round == 3){
+		charVel = 10;
+		health = 15;
 	}
 	random     = 0;
 	ranCounter = 100;

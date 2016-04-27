@@ -31,6 +31,7 @@ class Player: public Character {
 		SDL_Surface* surface_Left;  // SDL surface of character
 		SDL_Rect incomingBullet;    // Rectangle of Bullet
 		int itemHit;
+		int tempVel;
 };
 
 #endif
