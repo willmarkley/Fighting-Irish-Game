@@ -28,7 +28,7 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	itemHit		= 0;
 	if(round == 1 || round == 2){
     	charVel     = 5;
-	health      = 5;
+		health      = 5;
 	} else if (round == 3){
 		charVel = 4;
 		health = 4;
@@ -131,7 +131,6 @@ void Player::handle_input(SDL_Event* event){
 				break;
         }
     }
-	cout << charVel << endl;
 }
 
 
