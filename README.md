@@ -34,11 +34,11 @@ The player can beat the game by shooting bullets at the enemies.  Each enemy has
 
 ######Items
 A player can collide with the **?** box on the screen to recieve an item.  Items are randomized and could be one of the following:  
-  Increase player health  
-  Decrease player health  
-  Increase player speed  
-  Decrease player speed  
-  Give the player a health of 10 (Normally 5)  
+1. Increase player health  
+2. Decrease player health  
+3. Increase player speed  
+4. Decrease player speed  
+5. Give the player a health of 10 (Normally 5)  
 		
 
 ####4. Known bugs.
