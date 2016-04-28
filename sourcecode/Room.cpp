@@ -80,7 +80,7 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(100,0, rou
 }
 
 
-Room::~Room(){    // deconstructor
+void Room::deconstructor(){    // deconstructor
 	SDL_FreeSurface(player.getSurface());
 	SDL_FreeSurface(player.getSurfaceLeft());
 	SDL_FreeSurface(item1.getSurface());
@@ -139,10 +139,6 @@ void Room::play(){
 		if ( !(player.getItemHit()) ) {
 			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
 		}
-		/*if ( player.getxBullet() != player.getX() && player.getyBullet() != player.getY() ){
-			player.shoot(player.getX(), player.getY(), player.getPressed());
-			apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
-		}*/
 		if(player.getHealth() >= 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
@@ -221,7 +217,7 @@ void Room::play(){
 		
 		update_screen();
 
-// NOT SURE IF WE NEED this block		//Cap the frame rate
+		//Cap the frame rate
 		if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ){
         	SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
 		}

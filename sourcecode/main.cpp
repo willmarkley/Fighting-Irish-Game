@@ -18,13 +18,25 @@ int main(){
 	r1.play();
 	if(r1.getLevel() == 1){
 		r2.play();
+		r1.deconstructor();
 	} else if (r1.getLevel() == 0){
+		r1.deconstructor();
 		return 0;
 	}	
 	if(r2.getLevel() == 2){
 		r3.play();
+		r2.deconstructor();
 	} else if (r2.getLevel() == 0){
+		r2.deconstructor();
+		return 0;
+	}
+	if(r3.getLevel() == 3){
+		r3.deconstructor();
+		return 0;
+	} else if (r2.getLevel() == 0){
+		r3.deconstructor();
 		return 0;
 	}	
+	r3.deconstructor();
 	return 0;
 }
