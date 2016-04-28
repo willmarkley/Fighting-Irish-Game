@@ -73,6 +73,8 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(100,0, rou
 	won = load_image("images/won.bmp");
 	level1 = load_image("images/level1.bmp");
 	level2 = load_image("images/level2.bmp");
+
+	// initialize enemies to alive
 	e1 = 1;
 	e2 = 1;
 	e3 = 1;
@@ -81,38 +83,19 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(100,0, rou
 
 
 Room::~Room(){    // deconstructor
-/*	SDL_FreeSurface(player.getSurface());
-	SDL_FreeSurface(player.getSurfaceLeft());
-	SDL_FreeSurface(item1.getSurface());
-	SDL_FreeSurface(enemy1.getSurface());
-	SDL_FreeSurface(enemy2.getSurface());
-	SDL_FreeSurface(enemy3.getSurface());
-	SDL_FreeSurface(enemyBeat.getSurface());
-	SDL_FreeSurface(bullet_surface);
-	SDL_FreeSurface(health1_surface);
-	SDL_FreeSurface(health2_surface);
-	SDL_FreeSurface(health3_surface);
-	SDL_FreeSurface(health4_surface);
-	SDL_FreeSurface(health5_surface);
-	SDL_FreeSurface(background);
-	SDL_FreeSurface(window);
-	SDL_FreeSurface(dead);
-	SDL_FreeSurface(won);
-	SDL_FreeSurface(level1);
-	SDL_FreeSurface(level2);*/
 	SDL_Quit();
 }
 
 void Room::play(){ 
     srand(time(0));
-    Timer fps;   // frame rate regulator								// NOT SURE IF WE NEED TIMER  (or any calls to fps)
+    Timer fps;   // frame rate regulator
 	bool QUIT=false;
 
 	while(!QUIT){
 		fps.start();   // start the frame timer
 		while( SDL_PollEvent( &event ) )   // execute while there is an event that needs to be handled
 		{
-		    player.handle_input( &event );         // handle the characters events
+		    player.handle_input( &event ); // handle the characters events
 
 		    if( event.type == SDL_QUIT ){  // closed window
 				level = 0;
@@ -120,10 +103,11 @@ void Room::play(){
 		    }
 		}
 		apply_surface(0,0,background,window);
-		player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
-		player.collision(enemy1, enemy2, enemy3);
-		
 
+		player.move(enemy1,enemy2,enemy3,item1);           // move player according to input
+		player.collision_Bullet(enemy1, enemy2, enemy3);   // check if bullet hit any enemies
+		
+		// move and display enemies
 		if(e1 == 1){
 			enemy1.move(player, enemy2, enemy3);
 			apply_surface(enemy1.getX(),enemy1.getY(),enemy1.getSurface(), window);
@@ -136,9 +120,13 @@ void Room::play(){
 			enemy3.move(player, enemy2, enemy1);
 			apply_surface(enemy3.getX(),enemy3.getY(),enemy3.getSurface(), window);
 		}
+
+		// display item if it hasn't been picked up
 		if ( !(player.getItemHit()) ) {
 			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
 		}
+
+		// display health status
 		if(player.getHealth() >= 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
@@ -150,16 +138,22 @@ void Room::play(){
 		else if(player.getHealth() == 1)
 			apply_surface(0, 0, health5_surface, window);
 		
+		// simulate player shooting
 		player.shoot(player.getX(), player.getY(), player.getPressed());
+
+		// display bullet
 		if( player.getBullet() ) {
 			apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
 		}
+
+		// display player
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),player.getSurfaceLeft(),window);
 		} else if (player.getImage() == 1){
 			apply_surface(player.getX(),player.getY(),player.getSurface(),window);
 		}
 		
+		// check if enemies have been destroyed
 		if(enemy1.getHealth() == 0){
 			e1 = 0;
 			enemy1 = enemyBeat;
@@ -173,8 +167,7 @@ void Room::play(){
 			enemy3 = enemyBeat;
 		}
 
-		
-
+		// end game if player dies
 		if(player.getHealth() <= 0){
 			apply_surface(0,0, dead, window);
 			update_screen();
@@ -183,7 +176,7 @@ void Room::play(){
 			QUIT = true;
 		}
 
-
+		// display level 1 victory pictures
 		if (e1==0 && e2==0 && e3==0 && level==1){
 			apply_surface(0,0, won, window);
 			apply_surface(200, 0, level1, window);
@@ -192,7 +185,8 @@ void Room::play(){
 			while( SDL_PollEvent( &event ) ) {}  // capture input
 			QUIT = true;		
 		}
-	
+
+		// display level 2 victory pictures
 		if (e1==0 && e2==0 && e3==0 && level==2){
 			apply_surface(0,0, won, window);
 			apply_surface(100, 0, level2, window);
@@ -202,6 +196,7 @@ void Room::play(){
 			QUIT = true;		
 		}		
 
+		// display level 3 and game ending victory pictures
 		if (e1==0 && e2==0 && e3==0 && level==3){
 			apply_surface(0,0, won, window);
 			update_screen();
@@ -211,7 +206,7 @@ void Room::play(){
 		
 		update_screen();
 
-		//Cap the frame rate
+		// cap the frame rate
 		if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ){
         	SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
 		}
@@ -280,7 +275,7 @@ SDL_Surface* Room::load_image(string filename){  // loads image to surface
 }
 
 
-void Room::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination){
+void Room::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination){ // applies image to surface
     //Holds offsets
     SDL_Rect offset;
 
@@ -293,7 +288,7 @@ void Room::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destin
 }
 
 
-bool Room::update_screen(){
+bool Room::update_screen(){ // updates screen
 	if( SDL_Flip( window ) == -1 )
 	{
 		return false;
@@ -302,7 +297,7 @@ bool Room::update_screen(){
 	return true;
 }
 
-int Room::getLevel(){
+int Room::getLevel(){   // the level of the room
 	return level;
 }
 

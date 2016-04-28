@@ -17,9 +17,9 @@ const int ROOM_WIDTH       = 1092; // room width
 const int ROOM_HEIGHT      = 602;  // room height
 
 
-// Functions
+// Methods
 
-Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
+Enemy::Enemy(int a, int b, int round) : Character(a, b){  // constructor
 	// initialize values
 	if(round == 1){
 	    charVel = 3;
@@ -35,7 +35,7 @@ Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
 	ranCounter = 100;
 }
 
-void Enemy::move(Character &p1, Character &e2, Character &e3){
+void Enemy::move(Character &p1, Character &e2, Character &e3){  // moves the enemy while checking for collisions
 	if (ranCounter == 100){
 		random = rand() % 4 + 1;
 		ranCounter = 0;

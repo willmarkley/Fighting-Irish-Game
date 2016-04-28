@@ -10,13 +10,13 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_WIDTH       = 1092; // room width
 const int ROOM_HEIGHT      = 602;  // room height
 
 
-// Functions
+// Methods
 
-Character::Character(int a, int b){
+Character::Character(int a, int b){  // constructor
     // initialize the offsets
     img_rectangle.x = a;
     img_rectangle.y = b;
@@ -29,10 +29,10 @@ Character::Character(int a, int b){
 }
 
 
-void Character::move(Character e1, Character e2, Character e3){}
+void Character::move(Character e1, Character e2, Character e3){}  // virtual function that is redefined in derived classes
 
 
-bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
+bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){  // collision detection function
     int left1, left2;
     int right1, right2;
     int top1, top2;
@@ -77,8 +77,7 @@ bool Character::collision_detect(SDL_Rect r1, SDL_Rect r2){
 
 
 /*
-	GET and SET Functions
-		-See Character.h for descriptions
+	GET and SET Methods (see .h for descriptions)
 */
 
 

@@ -28,13 +28,12 @@ class Character {
 		void setHealth(int);	         // sets character health
 		void setCharVel(int);	         // sets character velocity
 		void setSurface(SDL_Surface*&);  // sets pointer to SDL surface
-		int xVel, yVel;        // X and Y velocity of the character
-		SDL_Rect img_rectangle;  // SDL rectangle that represents an image
+		int xVel, yVel;                  // X and Y velocity of the character
+		SDL_Rect img_rectangle;          // SDL rectangle that represents an image
 
 	protected:
 		SDL_Surface* surface;  // SDL surface of character
 		int charVel;	       // stores character velocity
-		//int xVel, yVel;        // X and Y velocity of the character
 		int health;            // character health
 };
 

@@ -15,13 +15,13 @@ const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
 const int BULLET_WIDTH     = 40;   // character width
 const int BULLET_HEIGHT    = 28;   // character height
-const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_WIDTH       = 1092; // room width
 const int ROOM_HEIGHT      = 602;  // room height
 
 
-// Functions
+// Methods
 
-Player::Player(int a, int b, int round) : Character(a, b){        // constructor
+Player::Player(int a, int b, int round) : Character(a, b){ // constructor
 	// initialize values
 	image       = 1;
 	lastPressed = 4;
@@ -43,7 +43,7 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
 	incomingBullet.w = BULLET_WIDTH;
 }
 
-void Player::move(Character e1, Character e2, Character e3, Item item){
+void Player::move(Character e1, Character e2, Character e3, Item item){ // moves the character while checking for collisions
     //Move the character left or right
     img_rectangle.x += xVel;
 
@@ -82,7 +82,8 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
         img_rectangle.y -= 10*yVel;
 		health -= 1;
     }
-	
+
+	//Collision detection with Item and corresponding function calls	
 	if(collision_detect(img_rectangle,item.getRect()) && !(itemHit)){
 		itemHit = 1;
 		tempVel = charVel;
@@ -102,7 +103,7 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 		}
 	}
 
-
+	//Checks if the bullet is on screen
 	if (incomingBullet.x > ROOM_WIDTH || incomingBullet.x < 0 || incomingBullet.y > ROOM_HEIGHT || incomingBullet.y < 0){
 		bullet = 0;
 		incomingBullet.x = img_rectangle.x;
@@ -113,7 +114,7 @@ void Player::move(Character e1, Character e2, Character e3, Item item){
 }
 
 
-void Player::handle_input(SDL_Event* event){
+void Player::handle_input(SDL_Event* event){ // handles key presses and adjusts the character's velocity
     //If a key was pressed
     if( event->type == SDL_KEYDOWN )
     {
@@ -149,7 +150,8 @@ void Player::handle_input(SDL_Event* event){
 }
 
 
-void Player::shoot(int x, int y, int lastPressed){
+void Player::shoot(int x, int y, int lastPressed){ // allows the character to shoot projectiles
+	// Checks if bullet exists
     if (bullet == 0){
 		incomingBullet.x = img_rectangle.x;
 		incomingBullet.y = img_rectangle.y;
@@ -169,7 +171,7 @@ void Player::shoot(int x, int y, int lastPressed){
 }
 
 
-void Player::collision(Character& e1, Character& e2, Character& e3){
+void Player::collision_Bullet(Character& e1, Character& e2, Character& e3){ //checks bullet collision with enemies
 	// Collides with e1
 	if(collision_detect(incomingBullet,e1.img_rectangle)){
 		e1.setHealth(e1.getHealth() - 1);
@@ -187,6 +189,9 @@ void Player::collision(Character& e1, Character& e2, Character& e3){
     }
 }
 
+/*
+	GET and SET Methods (see .h for descriptions)
+*/
 
 int Player::getImage(){
 	return image;
