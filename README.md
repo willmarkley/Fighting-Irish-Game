@@ -8,7 +8,7 @@ __Project Contributors:__
   Kevin Shin  
 
 
-####1. Special libraries needed to build/compile if personal machines were used
+####1. Special libraries needed to build/compile
 
 The SDL library is required to build/compile the program. If SDL is already installed, our *Makefile* will correctly link the libaries and compile the game.
 
