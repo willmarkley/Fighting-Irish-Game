@@ -31,8 +31,8 @@ Player::Player(int a, int b, int round) : Character(a, b){        // constructor
     	charVel     = 5;
 		health      = 5;
 	} else if (round == 3){
-		charVel = 7;
-		health = 7;
+		charVel = 5;
+		health = 5;
 	}
 
 	// initialize bullet

@@ -80,8 +80,8 @@ Room::Room(string filename,int round):player(200, 300, round), enemy1(100,0, rou
 }
 
 
-void Room::deconstructor(){    // deconstructor
-	SDL_FreeSurface(player.getSurface());
+Room::~Room(){    // deconstructor
+/*	SDL_FreeSurface(player.getSurface());
 	SDL_FreeSurface(player.getSurfaceLeft());
 	SDL_FreeSurface(item1.getSurface());
 	SDL_FreeSurface(enemy1.getSurface());
@@ -99,7 +99,7 @@ void Room::deconstructor(){    // deconstructor
 	SDL_FreeSurface(dead);
 	SDL_FreeSurface(won);
 	SDL_FreeSurface(level1);
-	SDL_FreeSurface(level2);
+	SDL_FreeSurface(level2);*/
 	SDL_Quit();
 }
 
@@ -179,7 +179,7 @@ void Room::play(){
 			apply_surface(0,0, dead, window);
 			update_screen();
 			level = 0;
-			sleep(4);
+			sleep(1);
 			QUIT = true;
 		}
 
@@ -188,11 +188,8 @@ void Room::play(){
 			apply_surface(0,0, won, window);
 			apply_surface(200, 0, level1, window);
 			update_screen();
-			sleep(4);
+			sleep(1);
 			while( SDL_PollEvent( &event ) ) {}  // capture input
-			//player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
-			//player.shoot(player.getX(), player.getY(), player.getPressed());
-			//player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}
 	
@@ -200,18 +197,15 @@ void Room::play(){
 			apply_surface(0,0, won, window);
 			apply_surface(100, 0, level2, window);
 			update_screen();
-			sleep(4);
+			sleep(1);
 			while( SDL_PollEvent( &event ) ) {}  // capture input
-			//player.shoot(player.getX(), player.getY(), player.getPressed());
-			//player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
-			//player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}		
 
 		if (e1==0 && e2==0 && e3==0 && level==3){
 			apply_surface(0,0, won, window);
 			update_screen();
-			sleep(4);
+			sleep(1);
 			QUIT = true;		
 		}		
 		

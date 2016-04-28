@@ -13,7 +13,7 @@ using namespace std;
 // Constants
 const int CHARACTER_WIDTH  = 100;  // character width
 const int CHARACTER_HEIGHT = 89;   // character height
-const int ROOM_WIDTH       = 1092;  // room width
+const int ROOM_WIDTH       = 1092; // room width
 const int ROOM_HEIGHT      = 602;  // room height
 
 
@@ -26,7 +26,7 @@ Enemy::Enemy(int a, int b, int round) : Character(a, b){        // constructor
 		health = 3;
 	}else if(round == 2){
 		charVel = 7;
-		health = 10;
+		health = 7;
 	}else if(round == 3){
 		charVel = 10;
 		health = 15;

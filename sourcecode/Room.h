@@ -16,7 +16,7 @@ class Room{
 
 	public:
 		Room(string="", int=1);     // constructor
-		void deconstructor();             // deconstructor
+		~Room();
 		void play();         // runs the game
 		int getLevel();
 
