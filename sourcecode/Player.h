@@ -18,6 +18,7 @@ class Player: public Character {
 		int getPressed();                                    // returns the last pressed key
 		int getxBullet();                                    // returns x position of bullet
 		int getyBullet();                                    // returns y position of bullet
+		int getBullet();				     // returns bullet existence
 		SDL_Surface* getSurfaceLeft();                       // returns a pointer to the left SDL surface
 		void setSurfaceLeft(SDL_Surface*&);                  // sets pointer to the left SDL surface
 		void collision(Character&, Character&, Character&); //checks bullet collision with enemies

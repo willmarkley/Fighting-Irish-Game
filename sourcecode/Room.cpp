@@ -119,7 +119,6 @@ void Room::play(){
 		        QUIT = true;
 		    }
 		}
-
 		apply_surface(0,0,background,window);
 		player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
 		player.collision(enemy1, enemy2, enemy3);
@@ -140,7 +139,10 @@ void Room::play(){
 		if ( !(player.getItemHit()) ) {
 			apply_surface(item1.getItemX(),item1.getItemY(), item1.getSurface(), window);
 		}
-
+		/*if ( player.getxBullet() != player.getX() && player.getyBullet() != player.getY() ){
+			player.shoot(player.getX(), player.getY(), player.getPressed());
+			apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
+		}*/
 		if(player.getHealth() >= 5)
 			apply_surface(0, 0, health1_surface, window);
 		else if(player.getHealth() == 4)
@@ -153,8 +155,9 @@ void Room::play(){
 			apply_surface(0, 0, health5_surface, window);
 		
 		player.shoot(player.getX(), player.getY(), player.getPressed());
-		apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
-
+		if( player.getBullet() ) {
+			apply_surface(player.getxBullet(), player.getyBullet(), bullet_surface, window);
+		}
 		if (player.getImage() == 0){
 			apply_surface(player.getX(),player.getY(),player.getSurfaceLeft(),window);
 		} else if (player.getImage() == 1){
@@ -180,7 +183,7 @@ void Room::play(){
 			apply_surface(0,0, dead, window);
 			update_screen();
 			level = 0;
-			sleep(5);
+			sleep(4);
 			QUIT = true;
 		}
 
@@ -189,10 +192,11 @@ void Room::play(){
 			apply_surface(0,0, won, window);
 			apply_surface(200, 0, level1, window);
 			update_screen();
-			sleep(5);
-			player.shoot(player.getX(), player.getY(), player.getPressed());
-			player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
-			player.collision(enemy1, enemy2, enemy3);	
+			sleep(4);
+			while( SDL_PollEvent( &event ) ) {}  // capture input
+			//player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
+			//player.shoot(player.getX(), player.getY(), player.getPressed());
+			//player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}
 	
@@ -200,17 +204,18 @@ void Room::play(){
 			apply_surface(0,0, won, window);
 			apply_surface(100, 0, level2, window);
 			update_screen();
-			sleep(5);
-			player.shoot(player.getX(), player.getY(), player.getPressed());
-			player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
-			player.collision(enemy1, enemy2, enemy3);	
+			sleep(4);
+			while( SDL_PollEvent( &event ) ) {}  // capture input
+			//player.shoot(player.getX(), player.getY(), player.getPressed());
+			//player.move(enemy1,enemy2,enemy3,item1);  // move player according to input
+			//player.collision(enemy1, enemy2, enemy3);	
 			QUIT = true;		
 		}		
 
 		if (e1==0 && e2==0 && e3==0 && level==3){
 			apply_surface(0,0, won, window);
 			update_screen();
-			sleep(5);
+			sleep(4);
 			QUIT = true;		
 		}		
 		

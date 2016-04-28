@@ -213,6 +213,10 @@ int Player::getyBullet(){
 	return incomingBullet.y;
 }
 
+int Player::getBullet(){
+	return bullet;
+}
+
 int Player::getItemHit(){
 	return itemHit;
 }
