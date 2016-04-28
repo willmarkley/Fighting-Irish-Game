@@ -39,9 +39,9 @@ A player can collide with the **?** box on the screen to recieve an item.  Items
 
 2. Decrease player health by 1
 
-3. Increase player speed and gives a *slide* effect
+3. Increase player speed and give player a *slide* effect
 
-4. Decrease player speed and gives a *slide* effect
+4. Decrease player speed and give player a *slide* effect
 
 5. Give the player a health of 10 (Normally 5)
 		
@@ -52,6 +52,6 @@ Occassionally when the enemies run across the perimeters of the window, they wil
 
 ####5. Any other information that will inform the instructor and TAs for final grading.
 
-The game was designed to be run on the University of Notre Dame Red Hat Linux Machines.
+The game was designed to be run on the University of Notre Dame Red Hat Linux Machines.  The group worked very hard to make this game a success and had a lot of fun learning along the way.
 
 
