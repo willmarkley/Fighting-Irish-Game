@@ -1,4 +1,7 @@
-# User Manual
+# Fighting Irish Game
+[![Build Status](https://travis-ci.org/willmarkley/Fighting-Irish-Game.svg?branch=master)](https://travis-ci.org/willmarkley/Fighting-Irish-Game). 
+
+## User Manual
 
 
 __Project Contributors:__  
