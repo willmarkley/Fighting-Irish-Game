@@ -1,6 +1,8 @@
 # Fighting Irish Game
 [![Build Status](https://travis-ci.org/willmarkley/Fighting-Irish-Game.svg?branch=master)](https://travis-ci.org/willmarkley/Fighting-Irish-Game)  
 
+Constructed entirely in C++, this game features three action packed levels of Notre-Dame-Athletics-themed survival. The objective of the game is to shoot various athletic equipment at Notre Dame rivals. The main player has a health gauge that lowers after colliding with an enemy. Additionally, each level features a question-mark box that contains either a positive or negative effect on the player. For detailed instructions on how to play the game, please see the manual below. Finally, the [SDL library](https://www.libsdl.org/) was used to rendered the graphics.
+
 ## User Manual
 
 
@@ -57,4 +59,6 @@ Occassionally when the enemies run across the perimeters of the window, they wil
 
 The game was designed to be run on the University of Notre Dame Red Hat Linux Machines.  The group worked very hard to make this game a success and had a lot of fun learning along the way.
 
+## Gameplay Image
 
+![fighting-irish-game1](fighting-irish-game1). 
