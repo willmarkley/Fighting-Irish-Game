@@ -61,4 +61,4 @@ The game was designed to be run on the University of Notre Dame Red Hat Linux Ma
 
 ## Gameplay Image
 
-![fighting-irish-game1](fighting-irish-game1). 
+![fighting-irish-game1](https://raw.githubusercontent.com/willmarkley/willmarkley.com/master/img/fighting-irish-game1.png)  
